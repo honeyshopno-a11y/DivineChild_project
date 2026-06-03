@@ -1,0 +1,71 @@
+body {
+    background: #f5f7fa;
+}
+
+.company-card {
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    transition: all 0.3s ease-in-out;
+}
+
+.company-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+.company-header {
+    /* background: linear-gradient(135deg, #6366f1, #06b6d4); */
+    /* background: linear-gradient(135deg, #6365f1d2, #06b5d4d5); */
+    /* background: linear-gradient(90deg, #2564ebdc, #60a5fa) !important; */
+    /* background: linear-gradient(135deg, #6365f1bd, #06b5d4b0); */
+    /* background: linear-gradient(150deg, #4a90e2, #357abd); */
+    background: rgba(74, 144, 226, 0.7);
+    /* background: rgba(105, 108, 255, 0.4); */
+    color: #fff;
+    padding: 20px;
+}
+.company_product-header {
+    background: linear-gradient(to right, #8f94fba6, #4e54c87a);
+    color: #fff !important;
+    padding: 18px;
+    border-radius: 6px 6px 0px 0px;
+}
+.contact_person_name{
+    color: white !important;
+}
+
+.company_name {
+    color: white !important;
+}
+
+.company-body {
+    padding: 25px;
+}
+@media(max-width:575px){
+    .company-body {
+        padding: 10px;
+    }
+}
+
+.info-label {
+    font-size: 14px;
+    font-weight: 600;
+    color: #6c757d;
+}
+
+.info-value {
+    font-size: 15px;
+    font-weight: 500;
+    color: #212529;
+}
+
+.info-item {
+    border-bottom: 1px solid #eee;
+    padding: 10px 0;
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
