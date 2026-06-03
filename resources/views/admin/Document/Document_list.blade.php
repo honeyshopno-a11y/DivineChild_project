@@ -33,7 +33,9 @@
 
                     <tbody>
 
-                        @foreach($document_data as $key => $item)
+                        @if(count($document_data) != 0)
+
+                            @foreach($document_data as $key => $item)
 
                             <tr>
 
@@ -56,11 +58,24 @@
                                         View
                                     </button>
 
+                                    <a href="{{ route('document-add-edit', 'category-' . $item->id) }}"
+                                        class="btn btn-primary p-0">
+                                        <i class="bx bx-edit m-0 p-2" style="font-size:17px;"></i>
+                                    </a>
+
+                                    <a href="{{ route('document-delete', 'category-' . $item->id) }}"
+                                        class="btn btn-danger p-0"
+                                        onclick="confirmDelete(event, '{{ route('document-delete', 'category-' . $item->id) }}')">
+                                        <i class="bx bx-trash m-0 p-2" style="font-size:17px;"></i>
+                                    </a>
+
                                 </td>
 
                             </tr>
 
-                        @endforeach
+                            @endforeach
+
+                        @endif
 
                     </tbody>
 

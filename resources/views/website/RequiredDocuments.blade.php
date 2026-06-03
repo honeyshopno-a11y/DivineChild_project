@@ -28,90 +28,39 @@
                 <h2 class="doc-main-title">DOCUMENTS REQUIRED AT THE TIME OF ADMISSION</h2>
             </div>
 
-            <!-- Tabs -->
-            <div class="doc-tab-row">
-                <button class="doc-tab-btn" onclick="switchDocTab('nursery', this)">STD: Nursery to VIII</button>
-                <button class="doc-tab-btn" onclick="switchDocTab('ix', this)">STD: IX</button>
-                <button class="doc-tab-btn active" onclick="switchDocTab('xi', this)">STD: XI</button>
-            </div>
-
-            <!-- Tab: Nursery to VIII -->
-            <div id="doc-tab-nursery" class="doc-tab-content">
-                <div class="doc-list">
-                    @php
-                        $nurseryDocs = [
-                            'Birth Certificate Xerox (Xerox Copy)',
-                            'Aadhar Card Xerox (Child)',
-                            'Parents Aadhar Card Xerox (Mother and Father)',
-                            'Passport Size Photo – Child-2, Parent\'s-2',
-                            'Previous Class Result Xerox (if applicable)',
-                            'Bank Passbook 1st Page Xerox (Child)',
-                            'Ration Card 1st Page Xerox',
-                        ];
-                    @endphp
-                    @foreach($nurseryDocs as $i => $doc)
-                        <div class="doc-item">
-                            <div class="doc-num">{{ $i + 1 }}</div>
-                            <div class="doc-text">{{ $doc }}</div>
-                        </div>
+            @if(count($categories) != 0)
+                <!-- Tabs -->
+                <div class="doc-tab-row">
+                    @foreach($categories as $key => $category)
+                        <button class="doc-tab-btn {{ $key == 0 ? 'active' : '' }}"
+                            onclick="switchDocTab('{{ $category->id }}', this)">
+                            {{ $category->title }}
+                        </button>
                     @endforeach
                 </div>
-            </div>
 
-            <!-- Tab: IX -->
-            <div id="doc-tab-ix" class="doc-tab-content">
-                <div class="doc-list">
-                    @php
-                        $ixDocs = [
-                            'Birth Certificate Xerox (Xerox Copy)',
-                            'NOC (From Previous School)',
-                            'Leaving Certificate (After Passing Previous Year)',
-                            'Previous Class Result Xerox (Passes IX)',
-                            'Child Adhar Card Xerox (name should be as per Board)',
-                            'Parents Adhar Card Xerox (Mother and Father)',
-                            'Bank Passbook 1st Page Xerox (Child)',
-                            'Ration Card 1st Page Xerox',
-                            'Father\'s L.C. Xerox (For the Caste) or Caste Certy',
-                            'Passport Size Photo – Child-2, Parent\'s-2 (Mother OR Father OR Guardian)',
-                        ];
-                    @endphp
-                    @foreach($ixDocs as $i => $doc)
-                        <div class="doc-item">
-                            <div class="doc-num">{{ $i + 1 }}</div>
-                            <div class="doc-text">{{ $doc }}</div>
+                @foreach($categories as $key => $category)
+                    <div id="doc-tab-{{ $category->id }}" class="doc-tab-content {{ $key == 0 ? 'active' : '' }}">
+                        <div class="doc-list">
+                            @foreach($category->documents as $i => $doc)
+                                <div class="doc-item">
+                                    <div class="doc-num">{{ $i + 1 }}</div>
+                                    <div class="doc-text">{{ $doc->document_name }}</div>
+                                </div>
+                            @endforeach
                         </div>
-                    @endforeach
-                </div>
-            </div>
-
-            <!-- Tab: XI -->
-            <div id="doc-tab-xi" class="doc-tab-content active">
+                    </div>
+                @endforeach
+            @else
                 <div class="doc-list">
-                    @php
-                        $xiDocs = [
-                            'Birth Certificate Xerox (Xerox Copy)',
-                            'NOC (From Previous School)',
-                            'Leaving Certificate (After Passing Previous Year) + Migration Certy (If Other Board)',
-                            'Previous Class Result Xerox (Passes X)',
-                            'Child Adhar Card Xerox (name should be as per X Board)',
-                            'Parents Adhar Card Xerox (Mother and Father) (name should be as per X Board Marksheet and Leaving Certificate)',
-                            'Bank Passbook 1st Page Xerox (Child)',
-                            'Ration Card 1st Page Xerox',
-                            'Father\'s L.C. Xerox (For the Caste) or Caste Certy',
-                            'Passport Size Photo – Child-2, Parent\'s-2 (Mother OR Father OR Guardian)',
-                            'Offered Subject: English, Phy, Chem, Bio/Maths, CS/PE, Acct, Bst, Eco',
-                        ];
-                    @endphp
-                    @foreach($xiDocs as $i => $doc)
-                        <div class="doc-item">
-                            <div class="doc-num">{{ $i + 1 }}</div>
-                            <div class="doc-text">{{ $doc }}</div>
-                        </div>
-                    @endforeach
+                    <div class="doc-item">
+                        <div class="doc-text">No documents available.</div>
+                    </div>
                 </div>
-            </div>
+            @endif
 
             <!-- Contact Row -->
+            @if($doc_contact)
             <div class="doc-contact-row">
                 <div class="doc-contact-card">
                     <div class="doc-contact-icon">
@@ -119,7 +68,7 @@
                     </div>
                     <div>
                         <div class="doc-contact-label">Transport</div>
-                        <div class="doc-contact-num">Shashikantbhai: 9228228562</div>
+                        <div class="doc-contact-num">{!! nl2br(e($doc_contact->transport)) !!}</div>
                     </div>
                 </div>
                 <div class="doc-contact-card">
@@ -128,10 +77,11 @@
                     </div>
                     <div>
                         <div class="doc-contact-label">Uniform Vendor</div>
-                        <div class="doc-contact-num">9974531351 – 6355105703</div>
+                        <div class="doc-contact-num">{!! nl2br(e($doc_contact->uniformvendor)) !!}</div>
                     </div>
                 </div>
             </div>
+            @endif
 
         </div>
     </div>
@@ -144,7 +94,6 @@
         font-weight: 700;
         color: #c0392b;
         letter-spacing: 1px;
-
         display: inline-block;
     }
 

@@ -2,6 +2,71 @@
 @section('content')
 
     <!-- Page Banner -->
+    <!-- <div class="section page-banner-section">
+                <div class="container">
+                    <div class="page-banner-wrap">
+                        <div class="row">
+                            <div class="col-lg-12">
+                                <div class="page-banner text-center">
+                                    <h2 class="title">Mega Events</h2>
+                                    <ul class="breadcrumb justify-content-center">
+                                        <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                                        <li class="breadcrumb-item active">Mega Events</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section section-padding">
+                <div class="container">
+
+                    <div class="text-center mb-5">
+                        <h2 class="mega-events-title">MEGA EVENTS</h2>
+                    </div>
+
+                    <div class="events-card">
+                        <div class="table-responsive">
+                            <table class="events-table">
+                                <thead>
+                                    <tr>
+                                        <th class="col-sr">SR.NO.</th>
+                                        <th>EVENT</th>
+                                        <th class="col-month">MONTH</th>
+                                        <th class="col-date">DATE</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @php
+                                        $events = [
+                                            ['event' => 'Investiture Ceremony', 'month' => 'JUNE', 'date' => '29/06/2024'],
+                                            ['event' => 'Science Exhibition', 'month' => 'AUGUST', 'date' => '10/08/2024'],
+                                            ['event' => 'Garba Celebration', 'month' => 'OCTOBER', 'date' => '05/10/2024'],
+                                            ['event' => 'Sports Day', 'month' => 'OCTOBER', 'date' => '18/10/2024 to 19/10/2024'],
+                                            ['event' => 'Flea', 'month' => 'DECEMBER', 'date' => '24/12/2024'],
+                                            ['event' => 'Picnic', 'month' => 'JANUARY', 'date' => '11/01/2025'],
+                                        ];
+                                    @endphp
+                                    @foreach($events as $i => $ev)
+                                        <tr>
+                                            <td class="td-sr">{{ $i + 1 }}</td>
+                                            <td class="td-event">{{ $ev['event'] }}</td>
+                                            <td><span class="month-badge">{{ $ev['month'] }}</span></td>
+                                            <td class="td-date">{{ $ev['date'] }}</td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+            </div> -->
+
+
+    <!-- Page Banner -->
     <div class="section page-banner-section">
         <div class="container">
             <div class="page-banner-wrap">
@@ -10,8 +75,12 @@
                         <div class="page-banner text-center">
                             <h2 class="title">Mega Events</h2>
                             <ul class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
-                                <li class="breadcrumb-item active">Mega Events</li>
+                                <li class="breadcrumb-item">
+                                    <a href="{{ url('/') }}">Home</a>
+                                </li>
+                                <li class="breadcrumb-item active">
+                                    Mega Events
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -30,7 +99,9 @@
 
             <div class="events-card">
                 <div class="table-responsive">
+
                     <table class="events-table">
+
                         <thead>
                             <tr>
                                 <th class="col-sr">SR.NO.</th>
@@ -39,33 +110,50 @@
                                 <th class="col-date">DATE</th>
                             </tr>
                         </thead>
+
                         <tbody>
-                            @php
-                                $events = [
-                                    ['event' => 'Investiture Ceremony', 'month' => 'JUNE', 'date' => '29/06/2024'],
-                                    ['event' => 'Science Exhibition', 'month' => 'AUGUST', 'date' => '10/08/2024'],
-                                    ['event' => 'Garba Celebration', 'month' => 'OCTOBER', 'date' => '05/10/2024'],
-                                    ['event' => 'Sports Day', 'month' => 'OCTOBER', 'date' => '18/10/2024 to 19/10/2024'],
-                                    ['event' => 'Flea', 'month' => 'DECEMBER', 'date' => '24/12/2024'],
-                                    ['event' => 'Picnic', 'month' => 'JANUARY', 'date' => '11/01/2025'],
-                                ];
-                            @endphp
-                            @foreach($events as $i => $ev)
+
+                            @forelse($event_data as $key => $event)
+
                                 <tr>
-                                    <td class="td-sr">{{ $i + 1 }}</td>
-                                    <td class="td-event">{{ $ev['event'] }}</td>
-                                    <td><span class="month-badge">{{ $ev['month'] }}</span></td>
-                                    <td class="td-date">{{ $ev['date'] }}</td>
+                                    <td class="td-sr">
+                                        {{ $key + 1 }}
+                                    </td>
+
+                                    <td class="td-event">
+                                        {{ $event->event }}
+                                    </td>
+
+                                    <td>
+                                        <span class="month-badge">
+                                            {{ strtoupper($event->month) }}
+                                        </span>
+                                    </td>
+
+                                    <td class="td-date">
+                                        {{ \Carbon\Carbon::parse($event->date)->format('d/m/Y') }}
+                                    </td>
                                 </tr>
-                            @endforeach
+
+                            @empty
+
+                                <tr>
+                                    <td colspan="4" class="text-center py-4">
+                                        No Events Available
+                                    </td>
+                                </tr>
+
+                            @endforelse
+
                         </tbody>
+
                     </table>
+
                 </div>
             </div>
 
         </div>
     </div>
-
 @endsection
 
 <style>

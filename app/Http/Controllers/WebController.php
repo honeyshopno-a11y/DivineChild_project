@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\AgeCriteria;
+use App\Models\Category;
 use App\Models\Contact;
+use App\Models\Events;
 use App\Models\ExamSchedule;
 use App\Models\Gallery;
 use App\Models\HolidayList;
@@ -11,6 +13,7 @@ use App\Models\HomeSlider;
 use App\Models\News;
 use App\Models\PublicDisclosure;
 use App\Models\Syllabus;
+use App\Models\DocContact;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -117,7 +120,8 @@ class WebController extends Controller
 
      public function events()
     {
-        return view("website.events");
+         $event_data = Events::orderBy('date', 'asc')->get();
+        return view("website.events" , compact("event_data"));
     }
 
     public function awards()
@@ -128,7 +132,10 @@ class WebController extends Controller
 
     public function documents()
     {
-        return view("website.RequiredDocuments");
+        $categories = Category::with('documents')->whereHas('documents')->get();
+        $doc_contact = DocContact::first();
+
+        return view("website.RequiredDocuments", compact('categories', 'doc_contact'));
     }
 
     public function transferCertificates()

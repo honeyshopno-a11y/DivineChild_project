@@ -1,10 +1,11 @@
 @extends('admin.common')
+@section('title', 'ExamSchedule List')
 @section('content')
 
-    <meta charset="utf-8" />
+    <!-- <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>ExamSchedule List</title>
+    <title>ExamSchedule List</title> -->
 
     <div class="px-3 px-md-5 flex-grow-1 container-p-y">
         <div

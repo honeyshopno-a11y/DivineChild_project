@@ -5,7 +5,9 @@ use App\Http\Controllers\Api\InquiryFormController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DocContactController;
 use App\Http\Controllers\DocumentsController;
+use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ExamScheduleController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HolidayListController;
@@ -135,4 +137,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/document-store', [DocumentsController::class, 'DocumentStore'])->name('document-store');
     Route::get('/document-delete/{id}', [DocumentsController::class, 'DocumentDelete'])->name('document-delete');
 
+    Route::get('/doc-contact', [DocContactController::class, 'docContact'])->name('doc-contact');
+    Route::post('/doc-contact-store', [DocContactController::class, 'docContactStore'])->name('doc-contact-store');
+    Route::get('/doc-contact-store', function () {
+        return redirect()->route('doc-contact');
+    });
+
+    Route::get('/event-list', [EventsController::class, 'EventList'])->name('event-list');
+    Route::get('/event-add-edit/{slug}', [EventsController::class, 'EventAddEdit'])->name('event-add-edit');
+    Route::post('/event-store', [EventsController::class, 'EventStore'])->name('event-store');
+    Route::get('/event-delete/{id}', [EventsController::class, 'EventDelete'])->name('event-delete');
 });

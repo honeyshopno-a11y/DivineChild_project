@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>Dashboard</title>
+    <title>@yield('title', 'Dashboard')</title>
     <meta name="description" content="" />
     <!-- Favicon -->
     <!-- <link rel="icon" type="image/x-icon" href="{{ asset('assets/img/icon/logo.png') }}" /> -->
@@ -195,6 +195,46 @@
                         </a>
                     </li>
 
+
+
+                    <li class="menu-item
+                        {{ request()->routeIs('category-*')
+                        || request()->routeIs('document-*')
+                        || request()->routeIs('doc-contact')
+                        ? 'active open' : '' }}">
+
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
+                            <div>Required Documents</div>
+                        </a>
+
+                        <ul class="menu-sub">
+
+                            <!-- Category -->
+                            <li class="menu-item {{ request()->routeIs('category-*') ? 'active' : '' }}">
+                                <a href="{{ route('category-list') }}" class="menu-link">
+                                    <div>Category</div>
+                                </a>
+                            </li>
+
+                            <!-- Documents -->
+                            <li class="menu-item {{ request()->routeIs('document-*') ? 'active' : '' }}">
+                                <a href="{{ route('document-list') }}" class="menu-link">
+                                    <div>Documents</div>
+                                </a>
+                            </li>
+
+                            <!-- Contact -->
+                            <li class="menu-item {{ request()->routeIs('doc-contact') ? 'active' : '' }}">
+                                <a href="{{ route('doc-contact') }}" class="menu-link">
+                                    <div>Contact</div>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
                     <li class="menu-item {{ request()->is('contact*') ? 'active' : '' }}">
                         <a href="{{ route('contact') }}" class="menu-link">
                             <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
@@ -202,26 +242,11 @@
                         </a>
                     </li>
 
-                    <li
-                        class="menu-item {{ request()->is('category*') || request()->is('category*') ? 'active open' : '' }}">
-                        <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
-                            <div>Required Documents</div>
+                    <li class="menu-item {{ request()->is('event*') ? 'active' : '' }}">
+                        <a href="{{ route('event-list') }}" class="menu-link">
+                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <div data-i18n="Analytics">Events</div>
                         </a>
-
-                        <ul class="menu-sub">
-                            <li class="menu-item {{ request()->is('category') ? 'active' : '' }}">
-                                <a href="{{ route('category-list') }}" class="menu-link">
-                                    <div>Category</div>
-                                </a>
-                            </li>
-
-                            <li class="menu-item {{ request()->is('document*') ? 'active' : '' }}">
-                                <a href="{{ route('document-list') }}" class="menu-link">
-                                    <div>Documents</div>
-                                </a>
-                            </li>
-                        </ul>
                     </li>
 
 
