@@ -30,7 +30,7 @@ class HolidayListController extends Controller
         $id = $request->id;
 
         $request->validate([
-            'main_title' => 'required',
+            'year' => 'required',
             'holiday' => 'required',
             'month' => 'required',
             'day' => 'required',
@@ -41,7 +41,7 @@ class HolidayListController extends Controller
 
             $data = new HolidayList();
 
-            $data->main_title = $request->main_title;
+            $data->year = $request->year;
             $data->holiday = $request->holiday;
             $data->month = $request->month;
             $data->day = $request->day;
@@ -56,7 +56,7 @@ class HolidayListController extends Controller
 
             $data = HolidayList::find($id);
 
-            $data->main_title = $request->main_title;
+            $data->year = $request->year;
             $data->holiday = $request->holiday;
             $data->month = $request->month;
             $data->day = $request->day;

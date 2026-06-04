@@ -274,7 +274,7 @@
         display: flex;
         align-items: center;
         gap: 10px;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: 600;
     }
 
@@ -295,7 +295,7 @@
 
     .exam-card table thead th {
         padding: 11px 14px;
-        font-size: 13px;
+        font-size: 16px;
         font-weight: 700;
         color: #225178;
         text-align: left;
@@ -323,6 +323,7 @@
         color: #225178;
         text-align: center;
         width: 60px;
+        font-size: 15px;
     }
 
     /* Pre-Board date cards grid */
@@ -361,7 +362,7 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        font-size: 14px;
+        font-size: 17px;
         font-weight: 700;
         color: #225178;
         margin-bottom: 8px;
@@ -408,7 +409,7 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        font-size: 15px;
+        font-size: 18px;
         font-weight: 600;
     }
 

@@ -1,9 +1,9 @@
 @extends('admin.common')
+@section('title', 'Holiday')
 @section('content')
 
     <meta charset="utf-8" />
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Holiday List</title>
 
     <div class="px-3 px-md-5 flex-grow-1 container-p-y">
@@ -28,7 +28,7 @@
                             <thead class="border-top">
                                 <tr>
                                     <th class="text-center">SL</th>
-                                    <th class="text-center">Main Title</th>
+                                    <th class="text-center">Year</th>
                                     <th class="text-center">Holiday</th>
                                     <th class="text-center">Month</th>
                                     <th class="text-center">Day</th>
@@ -44,7 +44,7 @@
 
                                             <td class="text-center">
                                                 <h6 class="text-nowrap mb-0">
-                                                    {{ $item->main_title ?? 'N/A' }}
+                                                    {{ $item->year ?? 'N/A' }}
                                                 </h6>
                                             </td>
 
@@ -94,5 +94,16 @@
             </div>
         @endsession
     </div>
-
+<script>
+        setTimeout(function () {
+            const alert = document.getElementById('custom_alert');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(function () {
+                    alert.style.display = 'none';
+                }, 500);
+            }
+        }, 2000);
+    </script>
 @endsection

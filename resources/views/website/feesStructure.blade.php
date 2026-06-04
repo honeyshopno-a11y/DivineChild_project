@@ -25,130 +25,85 @@
         <div class="container">
 
             {{-- ===== FEE TABLE ===== --}}
-            <div class="info-card mb-4">
+       <div class="info-card mb-4">
                 <h3 class="info-sec-title">Fee Structure for the Academic Year 2026–27 (CBSE) Suggested</h3>
                 <div class="table-responsive">
                     <table class="fee-table">
                         <thead>
                             <tr>
                                 <th style="width:20%">Instalment Date</th>
-                                <th>Pre-Pri</th>
-                                <th>I–II</th>
-                                <th>III to V</th>
-                                <th>VI to VIII</th>
-                                <th>IX to X</th>
-                                <th>XI–XII<br>Comm</th>
-                                <th>XI–XII<br>Sci</th>
+                                @foreach($categories as $cat)
+                                    <th>{{ $cat->title }}</th>
+                                @endforeach
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>Before 31 March 26 at time of new Admission / ADM rollover in month of 21 to 31 March
-                                    2026</td>
-                                <td>5485</td>
-                                <td>6155</td>
-                                <td>6235</td>
-                                <td>6485</td>
-                                <td>6735</td>
-                                <td>6985</td>
-                                <td>7405</td>
-                            </tr>
-                            <tr>
-                                <td>3rd to 12th Instalment to Pay by 20th May to 28th Feb</td>
-                                <td>2742.5</td>
-                                <td>3077.5</td>
-                                <td>3117.5</td>
-                                <td>3242.5</td>
-                                <td>3367.5</td>
-                                <td>3492.5</td>
-                                <td>3702.5</td>
-                            </tr>
+                            @foreach($feeDetails as $row)
+                                <tr>
+                                    <td>{{ $row->title }}</td>
+                                    @foreach($categories as $cat)
+                                        <td>{{ $row->fee_details[$cat->title] ?? '-' }}</td>
+                                    @endforeach
+                                </tr>
+                            @endforeach
+
+                            {{-- ✅ Total row --}}
                             <tr class="total-row">
-                                <td>Total</td>
-                                <td>32910</td>
-                                <td>36930</td>
-                                <td>37410</td>
-                                <td>38910</td>
-                                <td>40410</td>
-                                <td>41910</td>
-                                <td>44430</td>
+                                <td><strong>Total</strong></td>
+                                @foreach($categories as $cat)
+                                    <td><strong>{{ $totals[$cat->title] ?? 0 }}</strong></td>
+                                @endforeach
                             </tr>
                         </tbody>
                     </table>
                 </div>
-                <ul class="note-list mt-3">
-                    <li>Admission form charge: 1000/-</li>
-                    <li>It is mandatory to pay the above amount on mentioned date (Admission and Rollover fees
-                        non-refundable, Online by School App).</li>
-                    <li>Transportation shall be made available on the campus for your convenience, on chargeable basis.</li>
-                    <li>Textbooks: on chargeable basis. (8780859625, 7490006350)</li>
-                    <li>Uniform: on chargeable basis. (9974531351)</li>
-                    <li>ECCA: on chargeable basis.</li>
-                    <li>Two months advance fees.</li>
-                </ul>
+                <p class="note-list mt-3">
+                   {!! $fee_structure_details_note->description !!}
+                </p>
             </div>
+
+
 
             {{-- ===== SCHOOL TIMING ===== --}}
             <div class="info-card mb-4">
                 <h3 class="info-sec-title">School Timing</h3>
                 <div class="timing-list">
-                    <div class="timing-item">
-                        <div class="timing-dot"></div>
-                        <div>
-                            <div class="timing-label">Nursery to Sr. Kg.</div>
-                            <div class="timing-val">Reporting Time – 8:45am | School Time – 8:45am</div>
+                    @if(isset($timing) && count($timing) > 0)
+                        @foreach($timing as $t)
+                            <div class="timing-item">
+                                <div class="timing-dot"></div>
+                                <div>
+                                    <div class="timing-label">{{ $t->title }}</div>
+                                    <div class="timing-val">
+                                        @if($t->reporting_time)
+                                            Reporting Time – {{ \Carbon\Carbon::parse($t->reporting_time)->format('g:ia') }} | 
+                                        @endif
+                                        School Time – {{ \Carbon\Carbon::parse($t->school_start_time)->format('g:ia') }}@if($t->school_end_time) to {{ \Carbon\Carbon::parse($t->school_end_time)->format('g:ia') }}@endif
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="col-12 text-center">
+                            <p>No school timing found.</p>
                         </div>
-                    </div>
-                    <div class="timing-item">
-                        <div class="timing-dot"></div>
-                        <div>
-                            <div class="timing-label">I to X</div>
-                            <div class="timing-val">Reporting Time – 7:45am | School Time – 8:00am to 1:00pm</div>
-                        </div>
-                    </div>
-                    <div class="timing-item">
-                        <div class="timing-dot"></div>
-                        <div>
-                            <div class="timing-label">XI to XII (Sci / Comm)</div>
-                            <div class="timing-val">School Time – 9:00am to 12:00pm</div>
-                        </div>
-                    </div>
+                    @endif
                 </div>
             </div>
 
             {{-- ===== EXTRA CO-CURRICULAR ===== --}}
             <div class="info-card mb-4">
                 <h3 class="info-sec-title">Extra Co-Curricular Activities (Dedicated Classrooms)</h3>
-                @php
-                    $activities = [
-                        'Performing Art',
-                        'Drama',
-                        'Dance (Western & Classic)',
-                        'Computer Coding',
-                        'Artificial Intelligences Coding',
-                        'Football',
-                        'Material Art',
-                        'Robotics',
-                        'Chess',
-                        'Netball',
-                        'Yoga',
-                        'Athletics',
-                        'Self Defense',
-                        'Fashion Designing Club',
-                        'Eco Club',
-                        'Gymnastic',
-                        'Table Tennis',
-                        'Badminton',
-                        'Karate',
-                        'Basket Ball',
-                        'Skating',
-                        'Sport Club',
-                    ];
-                @endphp
                 <div class="activity-grid">
-                    @foreach($activities as $act)
-                        <div class="activity-item">{{ $act }}</div>
-                    @endforeach
+                    @if(count($activities) > 0)
+                        @foreach($activities as $act)
+                            <div class="activity-item">{{ $act->name }}</div>
+                        @endforeach
+                    @else
+                        <div class="col-12 text-center">
+                            <p>No extra co-curricular activities found.</p>
+                        </div>
+                    @endif
                 </div>
             </div>
 

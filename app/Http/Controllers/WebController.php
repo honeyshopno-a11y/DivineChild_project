@@ -3,9 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\AgeCriteria;
+use App\Models\Awards;
+use App\Models\Category;
 use App\Models\Contact;
+use App\Models\Events;
 use App\Models\ExamSchedule;
 use App\Models\Facilities;
+use App\Models\FeeStructure;
+use App\Models\FeeStructureDetail;
+use App\Models\FeeStructureDetailNote;
 use App\Models\Gallery;
 use App\Models\HolidayList;
 use App\Models\HomeSlider;
@@ -14,7 +20,12 @@ use App\Models\PracticalExaminationSchedule;
 use App\Models\PreBoardDates;
 use App\Models\PrimaryToSecondaryExamSchedule;
 use App\Models\PublicDisclosure;
+use App\Models\SchoolTiming;
+use App\Models\Staff;
 use App\Models\Syllabus;
+use App\Models\DocContact;
+use App\Models\Management;
+use App\Models\SchoolActivities;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -104,7 +115,31 @@ class WebController extends Controller
 
     public function feesStructure()
     {
-        return view("website.feesStructure");
+        $categories = FeeStructure::orderBy('id')->get();
+
+
+        $feeDetails = FeeStructureDetail::orderBy('id')->get()->map(function ($item) {
+            $item->fee_details = is_array($item->fee_details)
+                ? $item->fee_details
+                : json_decode($item->fee_details, true);
+            return $item;
+        });
+
+
+        $totals = [];
+        foreach ($categories as $cat) {
+            $total = 0;
+            foreach ($feeDetails as $row) {
+                $total += (float) ($row->fee_details[$cat->title] ?? 0);
+            }
+            $totals[$cat->title] = $total;
+        }
+
+
+        $fee_structure_details_note = FeeStructureDetailNote::first();
+        $activities = SchoolActivities::all();
+        $timing = SchoolTiming::all();
+        return view("website.feesStructure", compact('activities', 'timing' , 'categories' , 'fee_structure_details_note' ,'feeDetails' ,'totals'));
     }
 
     public function syllabus()
@@ -123,13 +158,20 @@ class WebController extends Controller
 
     public function events()
     {
-        return view("website.events");
+        $event_data = Events::orderBy('date', 'asc')->get();
+        return view("website.events", compact("event_data"));
     }
 
     public function awards()
     {
-        // $awards = $awards::all();
-        return view("website.awards");
+        $award_data = Awards::orderBy('date', 'desc')->get();
+        return view("website.awards", compact("award_data"));
+    }
+
+    public function management()
+    {
+        $management_data = Management::all();
+        return view("website.management", compact('management_data'));
     }
 
     public function facilities()
@@ -140,7 +182,16 @@ class WebController extends Controller
 
     public function documents()
     {
-        return view("website.RequiredDocuments");
+        $categories = Category::with('documents')->whereHas('documents')->get();
+        $doc_contact = DocContact::first();
+
+        return view("website.RequiredDocuments", compact('categories', 'doc_contact'));
+    }
+
+    public function staff()
+    {
+        $staff = Staff::all();
+        return view("website.staff", compact("staff"));
     }
 
     public function transferCertificates()

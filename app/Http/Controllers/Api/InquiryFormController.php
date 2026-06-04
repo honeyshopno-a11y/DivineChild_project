@@ -61,6 +61,42 @@ class InquiryFormController extends Controller
         ]);
     }
 
+    // WEB STORE
+    public function webStore(Request $request)
+    {
+        $request->validate([
+            'child_photo' => 'required|image|max:5120',
+            'student_name' => 'required',
+            'gender' => 'required',
+            'date_of_birth' => 'required|date',
+            'primary_mobile_no' => 'required',
+        ]);
+
+        $data = $request->all();
+
+        if ($request->hasFile('child_photo')) {
+            $childPhoto = time() . '_child.' . $request->child_photo->extension();
+            $request->child_photo->move(public_path('uploads/inquiry'), $childPhoto);
+            $data['child_photo'] = $childPhoto;
+        }
+
+        if ($request->hasFile('father_photo')) {
+            $fatherPhoto = time() . '_father.' . $request->father_photo->extension();
+            $request->father_photo->move(public_path('uploads/inquiry'), $fatherPhoto);
+            $data['father_photo'] = $fatherPhoto;
+        }
+
+        if ($request->hasFile('mother_photo')) {
+            $motherPhoto = time() . '_mother.' . $request->mother_photo->extension();
+            $request->mother_photo->move(public_path('uploads/inquiry'), $motherPhoto);
+            $data['mother_photo'] = $motherPhoto;
+        }
+
+        InquiryForm::create($data);
+
+        return redirect()->back()->with('success', 'Inquiry Form Submitted Successfully!');
+    }
+
     // LIST API
     public function index()
     {

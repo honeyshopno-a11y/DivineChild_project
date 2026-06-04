@@ -1,4 +1,6 @@
 @extends('admin.common')
+@section('title', 'Documents')
+
 @section('content')
 
     <div class="px-3 px-md-5 flex-grow-1 container-p-y">
@@ -33,7 +35,9 @@
 
                     <tbody>
 
-                        @foreach($document_data as $key => $item)
+                        @if(count($document_data) != 0)
+
+                            @foreach($document_data as $key => $item)
 
                             <tr>
 
@@ -56,11 +60,24 @@
                                         View
                                     </button>
 
+                                    <a href="{{ route('document-add-edit', 'category-' . $item->id) }}"
+                                        class="btn btn-primary p-0">
+                                        <i class="bx bx-edit m-0 p-2" style="font-size:17px;"></i>
+                                    </a>
+
+                                    <a href="{{ route('document-delete', 'category-' . $item->id) }}"
+                                        class="btn btn-danger p-0"
+                                        onclick="confirmDelete(event, '{{ route('document-delete', 'category-' . $item->id) }}')">
+                                        <i class="bx bx-trash m-0 p-2" style="font-size:17px;"></i>
+                                    </a>
+
                                 </td>
 
                             </tr>
 
-                        @endforeach
+                            @endforeach
+
+                        @endif
 
                     </tbody>
 
@@ -129,5 +146,16 @@
         </div>
 
     @endforeach
-
+<script>
+        setTimeout(function () {
+            const alert = document.getElementById('custom_alert');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(function () {
+                    alert.style.display = 'none';
+                }, 500);
+            }
+        }, 2000);
+    </script>
 @endsection

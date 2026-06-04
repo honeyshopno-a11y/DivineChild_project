@@ -1,8 +1,6 @@
 @extends('website.main')
 @section('content')
 
-
-    <!-- InstanceBeginEditable name="slider" -->
     <!-- Page Banner Start -->
     <div class="section page-banner-section">
         <div class="container">
@@ -12,8 +10,8 @@
                         <div class="page-banner text-center">
                             <h2 class="title">Awards / Achievements</h2>
                             <ul class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Awards / Achievements</li>
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
+                                <li class="breadcrumb-item active">Awards / Achievements</li>
                             </ul>
                         </div>
                     </div>
@@ -21,80 +19,60 @@
             </div>
         </div>
     </div>
-    <!-- Page Banner End -->
-    <!-- InstanceEndEditable -->
 
-    <!-- InstanceBeginEditable name="matter" -->
-    <!-- Awards / Achievements Start -->
+    <!-- Awards Section -->
     <div class="section upstudy-team-section section-padding">
         <div class="container">
+
             <div class="team-wrap">
                 <div class="row">
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single-team-02">
-                            <div class="team-img"><img src="assets/images/awards-and-achievements/01.jpg" alt=""></div>
-                            <div class="team-content text-center">
-                                <h3 class="name">INTERNATIONAL EDUCATION SUMMIT &amp; AWARDS</h3>
-                                <p class="designation">December 12, 2024</p>
-                            </div>
-                        </div>
-                    </div>
 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single-team-02">
-                            <div class="team-img"><img src="website/assets/images/gallery/01.jpg" alt=""></div>
-                            <div class="team-content text-center">
-                                <h3 class="name">SKILL AMBASSADOR</h3>
-                                <p class="designation">December 12, 2024</p>
-                            </div>
-                        </div>
-                    </div>
+                    @forelse($award_data as $award)
 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single-team-02">
-                            <div class="team-img"><img src="assets/images/awards-and-achievements/01.jpg" alt=""></div>
-                            <div class="team-content text-center">
-                                <h3 class="name">EXCELLENCE IN EDUCATION</h3>
-                                <p class="designation">December 12, 2024</p>
-                            </div>
-                        </div>
-                    </div>
+                        <div class="col-lg-4 col-sm-6 mb-4">
 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single-team-02">
-                            <div class="team-img"><img src="assets/images/awards-and-achievements/01.jpg" alt=""></div>
-                            <div class="team-content text-center">
-                                <h3 class="name">WORLD SCHOOL SUMMIT</h3>
-                                <p class="designation">December 12, 2024</p>
-                            </div>
-                        </div>
-                    </div>
+                            <div class="single-team-02">
 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single-team-02">
-                            <div class="team-img"><img src="assets/images/awards-and-achievements/02.jpg" alt=""></div>
-                            <div class="team-content text-center">
-                                <h3 class="name">CED EDU CONCLAVE</h3>
-                                <p class="designation">December 12, 2024</p>
-                            </div>
-                        </div>
-                    </div>
+                                <div class="team-img">
 
-                    <div class="col-lg-4 col-sm-6">
-                        <div class="single-team-02">
-                            <div class="team-img"><img src="assets/images/awards-and-achievements/02.jpg" alt=""></div>
-                            <div class="team-content text-center">
-                                <h3 class="name">OLL AIR 18</h3>
-                                <p class="designation">December 12, 2024</p>
+                                    @if($award->image)
+                                        <img src="{{ asset($award->image) }}" alt="{{ $award->title }}"
+                                            style="width:100%; height:250px; object-fit:cover;">
+                                    @else
+                                        <img src="{{ asset('website/assets/images/no-image.png') }}" alt="No Image"
+                                            style="width:100%; height:250px; object-fit:cover;">
+                                    @endif
+
+                                </div>
+
+                                <div class="team-content text-center">
+
+                                    <h3 class="name">
+                                        {{ $award->title ?? 'Untitled Award' }}
+                                    </h3>
+
+                                    <p class="designation">
+                                        {{ $award->date ? \Carbon\Carbon::parse($award->date)->format('F d, Y') : '' }}
+                                    </p>
+
+                                </div>
+
                             </div>
+
                         </div>
-                    </div>
+
+                    @empty
+
+                        <div class="col-12 text-center">
+                            <h5>No Awards Found</h5>
+                        </div>
+
+                    @endforelse
 
                 </div>
             </div>
+
         </div>
     </div>
-    <!-- Awards / Achievements End -->
-    <!-- InstanceEndEditable -->
 
 @endsection

@@ -1,4 +1,5 @@
 @extends('admin.common')
+@section('title', 'Age Criteria')
 @section('content')
 
     <meta charset="utf-8" />
@@ -89,5 +90,18 @@
             </div>
         @endsession
     </div>
+
+    <script>
+        setTimeout(function () {
+            const alert = document.getElementById('custom_alert');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(function () {
+                    alert.style.display = 'none';
+                }, 500);
+            }
+        }, 2000);
+    </script>
 
 @endsection

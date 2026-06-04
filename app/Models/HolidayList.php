@@ -9,7 +9,7 @@ class HolidayList extends Model
     protected $table = "holidayList";
 
     protected $fillable = [
-        'main_title',
+        'year',
         'holiday',
         'month',
         'day',

@@ -26,7 +26,7 @@
 
             <div class="text-center mb-5">
                 <h2 class="holiday-title">
-                    List of Holidays for the Year 2026-27
+                    List of Holidays @if($holiday->isNotEmpty() && !empty($holiday->first()->year)) for the Year {{ $holiday->first()->year }} @endif
                 </h2>
             </div>
 

@@ -1,10 +1,11 @@
 @extends('admin.common')
+@section('title', 'ExamSchedule')
 @section('content')
 
-    <meta charset="utf-8" />
+    <!-- <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>ExamSchedule List</title>
+    <title>ExamSchedule List</title> -->
 
     <div class="px-3 px-md-5 flex-grow-1 container-p-y">
         <div
@@ -82,5 +83,16 @@
             </div>
         @endsession
     </div>
-
+<script>
+        setTimeout(function () {
+            const alert = document.getElementById('custom_alert');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(function () {
+                    alert.style.display = 'none';
+                }, 500);
+            }
+        }, 2000);
+    </script>
 @endsection

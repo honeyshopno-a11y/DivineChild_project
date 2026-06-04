@@ -1,4 +1,5 @@
 @extends('admin.common')
+@section('title', 'Holiday')
 @section('content')
 
     <div class="px-3 px-md-5 flex-grow-1 container-p-y">
@@ -30,16 +31,16 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">
-                                        Main Title
+                                        Year
                                         <span class="text-danger">*</span>
                                     </label>
 
-                                    <input type="text" name="main_title"
-                                        class="form-control @error('main_title') is-invalid @enderror"
-                                        placeholder="Enter Main Title"
-                                        value="{{ $holiday_data == '' ? old('main_title') : $holiday_data->main_title }}">
+                                    <input type="text" name="year"
+                                        class="form-control @error('year') is-invalid @enderror"
+                                        placeholder="Enter Year"
+                                        value="{{ $holiday_data == '' ? old('year') : $holiday_data->year }}">
 
-                                    @error('main_title')
+                                    @error('year')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -117,5 +118,16 @@
             </div>
         </div>
     </div>
-
+<script>
+        setTimeout(function () {
+            const alert = document.getElementById('custom_alert');
+            if (alert) {
+                alert.style.transition = 'opacity 0.5s ease';
+                alert.style.opacity = '0';
+                setTimeout(function () {
+                    alert.style.display = 'none';
+                }, 500);
+            }
+        }, 2000);
+    </script>
 @endsection

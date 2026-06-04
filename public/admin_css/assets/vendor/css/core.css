@@ -15029,6 +15029,8 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
 }
 .menu:not(.menu-no-animation) .menu-link > :not(.menu-icon) {
   transition: opacity 0.3s ease-in-out;
+  margin-right: 15px;
+
 }
 
 .menu-sub {
@@ -15076,6 +15078,7 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
 .menu-vertical:not(.menu-no-animation) {
   transition: width 0.3s;
 }
+
 .menu-vertical,
 .menu-vertical .menu-block,
 .menu-vertical .menu-inner > .menu-item,
@@ -15090,7 +15093,8 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
   margin: 0.0625rem 0;
 }
 .menu-vertical .menu-inner > .menu-item .menu-link {
-  margin: 0rem 1rem;
+  /* margin: 0rem 1rem; */
+
 }
 .menu-vertical .menu-item .menu-link,
 .menu-vertical .menu-block {

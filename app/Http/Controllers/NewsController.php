@@ -15,6 +15,7 @@ class NewsController extends Controller
         return view('admin.news.news_list', $data);
     }
 
+
     public function newsAddEdit($slug)
     {
         if ($slug == 'add') {

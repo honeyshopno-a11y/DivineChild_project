@@ -6302,6 +6302,8 @@ input:not([type="submit"]):not([type="checkbox"]):not([type="radio"]):not([type=
 .upstudy-team-section .single-team-02 .team-img a img {
 	width: 100%;
 	transition: all 0.3s linear;
+	height: 250px;
+    background-size: cover;
 }
 .upstudy-team-section .single-team-02 .team-content {
 	position: relative;
