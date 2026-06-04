@@ -12,6 +12,8 @@ use App\Models\Gallery;
 use App\Models\HolidayList;
 use App\Models\HomeSlider;
 use App\Models\News;
+use App\Models\PreBoardDates;
+use App\Models\PrimaryToSecondaryExamSchedule;
 use App\Models\PublicDisclosure;
 use App\Models\SchoolTiming;
 use App\Models\Staff;
@@ -121,7 +123,9 @@ class WebController extends Controller
     }
     public function timetable()
     {
-        return view("website.timetable");
+        $primaryToSecondaryExamScheduleList = PrimaryToSecondaryExamSchedule::get();
+        $preBoardDatesList = PreBoardDates::get();
+        return view("website.timetable", compact('primaryToSecondaryExamScheduleList','preBoardDatesList'));
     }
 
 
@@ -161,5 +165,4 @@ class WebController extends Controller
     {
         return view("website.transfer-certificates");
     }
-
 }

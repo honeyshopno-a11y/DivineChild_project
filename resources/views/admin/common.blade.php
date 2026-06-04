@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
-    data-template="vertical-menu-template-free">
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
+    data-assets-path="../assets/" data-template="vertical-menu-template-free">
 
 <head>
     <meta charset="utf-8" />
@@ -109,7 +109,8 @@
                         </span> --}}
                         <a href="{{ route('dashboard') }}" class="pb-3 px-0 text-start">
                             <!-- <img src="{{ asset('assets/img/logo/logo-1.webp') }}" alt="logo" class="img-fluid p-3"> -->
-                            <img src="{{ asset('assets/img/icon/main-logo.png') }}" alt="logo" class="img-fluid p-3">
+                            <img src="{{ asset('assets/img/icon/main-logo.png') }}" alt="logo"
+                                class="img-fluid p-3">
 
                         </a>
                     </a>
@@ -223,6 +224,26 @@
                         </a>
                     </li>
 
+                    <li
+                        class="menu-item {{ request()->is('primary.to.secondary.exam.schedule*') ? 'active open' : '' }}">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
+                            <div>Time Table</div>
+                        </a>
+                        <ul class="menu-sub">
+                            <li class="menu-item {{ request()->is('primary.to.secondary.exam.schedule') ? 'active' : '' }}">
+                                <a href="{{ route('primary.to.secondary.exam.schedule.list') }}" class="menu-link">
+                                    <div>Primary to Secondary Exam Schedule</div>
+                                </a>
+                            </li>
+                            <li class="menu-item {{ request()->is('pre.board.dates') ? 'active' : '' }}">
+                                <a href="{{ route('pre.board.dates.list') }}" class="menu-link">
+                                    <div>Pre-Board Dates</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+
                     <li class="menu-item {{ request()->is('holidayList*') ? 'active' : '' }}">
                         <a href="{{ route('holiday-list') }}" class="menu-link">
                             <i class="bx bx-currency-note menu-icon tf-icons"></i>
@@ -325,16 +346,12 @@
                             <div data-i18n="Analytics">Staff</div>
                         </a>
                     </li>
-
-
-
                     <li class="menu-item {{ request()->is('inquiry-form*') ? 'active' : '' }}">
                         <a href="{{ route('inquiry-form-list') }}" class="menu-link">
                             <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
                             <div data-i18n="Analytics">Inquiry</div>
                         </a>
                     </li>
-
                     <!-- Layouts -->
                 </ul>
             </aside>
@@ -374,7 +391,8 @@
 
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="#" data-bs-toggle="dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="#"
+                                    data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
                                         <img src="{{ asset('admin_css/assets/img/avatars/1.png') }}" alt
                                             class="w-px-40 h-auto rounded-circle" />
@@ -386,8 +404,8 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="{{ asset('admin_css/assets/img/avatars/1.png') }}" alt
-                                                            class="w-px-40 h-auto rounded-circle" />
+                                                        <img src="{{ asset('admin_css/assets/img/avatars/1.png') }}"
+                                                            alt class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
@@ -403,7 +421,8 @@
                                     </li>
 
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                            onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
@@ -473,7 +492,7 @@
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('#myTable').DataTable();
         });
 

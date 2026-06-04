@@ -21,6 +21,7 @@ use App\Http\Controllers\PublicDisclosureController;
 use App\Http\Controllers\SchoolActivitiesController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SyllabusController;
+use App\Http\Controllers\TimeTableController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
@@ -127,6 +128,15 @@ Route::middleware('auth')->group(function () {
     Route::get('ExamSchedule-add-edit/{slug}', [ExamScheduleController::class, 'ExamScheduleAddEdit'])->name('ExamSchedule-add-edit');
     Route::post('ExamSchedule-store', [ExamScheduleController::class, 'ExamScheduleStore'])->name('ExamSchedule-store');
     Route::get('ExamSchedule-delete/{id}', [ExamScheduleController::class, 'ExamScheduleDelete'])->name('ExamSchedule-delete');
+    
+    Route::get('primary/to/secondary/exam/schedule/list', [TimeTableController::class, 'primaryToSecondaryExamScheduleList'])->name('primary.to.secondary.exam.schedule.list');
+    Route::get('primary/to/secondary/exam/schedule/{slug}', [TimeTableController::class, 'primaryToSecondaryExamScheduleAddEdit'])->name('primary.to.secondary.exam.schedule.addedit');
+    Route::post('primary/to/secondary/exam/schedule/store', [TimeTableController::class, 'primaryToSecondaryExamScheduleStore'])->name('primary.to.secondary.exam.schedule.store');
+    Route::get('primary/to/secondary/exam/schedule/delete/{id}', [TimeTableController::class, 'primaryToSecondaryExamScheduleDelete'])->name('primary.to.secondary.exam.schedule.delete');
+    Route::get('pre/board/dates/list', [TimeTableController::class, 'preBoardDatesList'])->name('pre.board.dates.list');
+    Route::get('pre/board/dates/{slug}', [TimeTableController::class, 'preBoardDatesAddEdit'])->name('pre.board.dates.addedit');
+    Route::post('pre/board/dates/store', [TimeTableController::class, 'preBoardDatesStore'])->name('pre.board.dates.store');
+    Route::get('pre/board/dates/delete/{id}', [TimeTableController::class, 'preBoardDatesDelete'])->name('pre.board.dates.delete');
 
     Route::get('/holiday-list', [HolidayListController::class, 'HolidayList'])->name('holiday-list');
     Route::get('/holiday-add-edit/{slug}', [HolidayListController::class, 'HolidayAddEdit'])->name('holiday-add-edit');
