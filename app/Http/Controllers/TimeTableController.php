@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PracticalExaminationSchedule;
 use App\Models\PreBoardDates;
 use App\Models\PrimaryToSecondaryExamSchedule;
 use Illuminate\Http\Request;
@@ -123,5 +124,61 @@ class TimeTableController extends Controller
             $data->delete();
         }
         return redirect()->route('pre.board.dates.list')->with('success', 'Pre-Board Dates Deleted Successfully');
+    }
+
+    public function practicalExaminationScheduleList()
+    {
+        $practicalExaminationScheduleList = PracticalExaminationSchedule::get();
+
+        return view('admin.time_table.practical_examination_schedule_list', compact('practicalExaminationScheduleList'));
+    }
+
+    public function practicalExaminationScheduleAddEdit($slug)
+    {
+        if ($slug == 'add') {
+            $practicalExaminationScheduleData = null;
+        } else {
+            $practicalExaminationScheduleData = PracticalExaminationSchedule::find($slug);
+        }
+
+        return view('admin.time_table.practical_examination_schedule_add_edit', compact('practicalExaminationScheduleData'));
+    }
+
+    public function practicalExaminationScheduleStore(Request $request)
+    {
+        $id = $request->id;
+
+        $request->validate([
+            'title'     => 'required|string|max:255',
+            'from_date' => 'required|date',
+            'to_date'   => 'nullable|date|after_or_equal:from_date',
+        ]);
+
+        if ($id == 'add') {
+            $data = new PracticalExaminationSchedule();
+            $data->title = $request->title;
+            $data->from_date = $request->from_date;
+            $data->to_date = $request->to_date;
+            $data->save();
+
+            return redirect()->route('practical.examination.schedule.list')->with('success', 'Practical Examination Schedule Added Successfully.');
+        } else {
+            $data = PracticalExaminationSchedule::find($id);
+            $data->title = $request->title;
+            $data->from_date = $request->from_date;
+            $data->to_date = $request->to_date;
+            $data->update();
+
+            return redirect()->route('practical.examination.schedule.list')->with('success', 'Practical Examination Schedule Updated Successfully.');
+        }
+    }
+
+    public function practicalExaminationScheduleDelete($id)
+    {
+        $data = PracticalExaminationSchedule::find($id);
+        if ($data) {
+            $data->delete();
+        }
+        return redirect()->route('practical.examination.schedule.list')->with('success', 'Practical Examination Schedule Deleted Successfully.');
     }
 }

@@ -54,6 +54,7 @@ Route::get('documents', [WebController::class, 'documents'])->name('documents');
 Route::get('feesStructure', [WebController::class, 'feesStructure'])->name('feesStructure');
 Route::get('events', [WebController::class, 'events'])->name('events');
 Route::get('awards', [WebController::class, 'awards'])->name('awards');
+Route::get('facilities', [WebController::class, 'facilities'])->name('facilities');
 Route::get('management', [WebController::class, 'management'])->name('management');
 Route::get('/staff', [WebController::class, 'staff'])->name('staff');
 Route::get('/school-timing', [WebController::class, 'school-timing'])->name('school-timing');
@@ -75,7 +76,6 @@ Route::middleware('guest')->group(function () {
         ->name('login');
 
     Route::post('/login', [AuthController::class, 'login']);
-
 });
 
 
@@ -118,6 +118,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/inquiry-form-view/{id}', [InquiryFormController::class, 'view'])->name('inquiry-form-view');
     Route::get('/inquiry-form-delete/{id}', [InquiryFormController::class, 'delete'])->name('inquiry-form-delete');
 
+    Route::get('/facilities/index', [InquiryFormController::class, 'facilitiesIndex'])->name('facilities.index');
+    Route::post('/facilities/store', [InquiryFormController::class, 'facilitiesStore'])->name('facilities.store');
 
     Route::get('/gallery-list', [GalleryController::class, 'galleryList'])->name('gallery-list');
     Route::get('/gallery/{id}', [GalleryController::class, 'galleryAddEdit'])->name('gallery-add-edit');
@@ -138,10 +140,16 @@ Route::middleware('auth')->group(function () {
     Route::get('primary/to/secondary/exam/schedule/{slug}', [TimeTableController::class, 'primaryToSecondaryExamScheduleAddEdit'])->name('primary.to.secondary.exam.schedule.addedit');
     Route::post('primary/to/secondary/exam/schedule/store', [TimeTableController::class, 'primaryToSecondaryExamScheduleStore'])->name('primary.to.secondary.exam.schedule.store');
     Route::get('primary/to/secondary/exam/schedule/delete/{id}', [TimeTableController::class, 'primaryToSecondaryExamScheduleDelete'])->name('primary.to.secondary.exam.schedule.delete');
+
     Route::get('pre/board/dates/list', [TimeTableController::class, 'preBoardDatesList'])->name('pre.board.dates.list');
     Route::get('pre/board/dates/{slug}', [TimeTableController::class, 'preBoardDatesAddEdit'])->name('pre.board.dates.addedit');
     Route::post('pre/board/dates/store', [TimeTableController::class, 'preBoardDatesStore'])->name('pre.board.dates.store');
     Route::get('pre/board/dates/delete/{id}', [TimeTableController::class, 'preBoardDatesDelete'])->name('pre.board.dates.delete');
+
+    Route::get('practical/examination/schedule/list', [TimeTableController::class, 'practicalExaminationScheduleList'])->name('practical.examination.schedule.list');
+    Route::get('practical/examination/schedule/{slug}', [TimeTableController::class, 'practicalExaminationScheduleAddEdit'])->name('practical.examination.schedule.addedit');
+    Route::post('practical/examination/schedule/store', [TimeTableController::class, 'practicalExaminationScheduleStore'])->name('practical.examination.schedule.store');
+    Route::get('practical/examination/schedule/delete/{id}', [TimeTableController::class, 'practicalExaminationScheduleDelete'])->name('practical.examination.schedule.delete');
 
     Route::get('/holiday-list', [HolidayListController::class, 'HolidayList'])->name('holiday-list');
     Route::get('/holiday-add-edit/{slug}', [HolidayListController::class, 'HolidayAddEdit'])->name('holiday-add-edit');
