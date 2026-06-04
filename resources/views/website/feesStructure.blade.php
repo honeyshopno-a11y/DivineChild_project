@@ -119,36 +119,16 @@
             {{-- ===== EXTRA CO-CURRICULAR ===== --}}
             <div class="info-card mb-4">
                 <h3 class="info-sec-title">Extra Co-Curricular Activities (Dedicated Classrooms)</h3>
-                @php
-                    $activities = [
-                        'Performing Art',
-                        'Drama',
-                        'Dance (Western & Classic)',
-                        'Computer Coding',
-                        'Artificial Intelligences Coding',
-                        'Football',
-                        'Material Art',
-                        'Robotics',
-                        'Chess',
-                        'Netball',
-                        'Yoga',
-                        'Athletics',
-                        'Self Defense',
-                        'Fashion Designing Club',
-                        'Eco Club',
-                        'Gymnastic',
-                        'Table Tennis',
-                        'Badminton',
-                        'Karate',
-                        'Basket Ball',
-                        'Skating',
-                        'Sport Club',
-                    ];
-                @endphp
                 <div class="activity-grid">
-                    @foreach($activities as $act)
-                        <div class="activity-item">{{ $act }}</div>
-                    @endforeach
+                    @if(count($activities) > 0)
+                        @foreach($activities as $act)
+                            <div class="activity-item">{{ $act->name }}</div>
+                        @endforeach
+                    @else
+                        <div class="col-12 text-center">
+                            <p>No extra co-curricular activities found.</p>
+                        </div>
+                    @endif
                 </div>
             </div>
 

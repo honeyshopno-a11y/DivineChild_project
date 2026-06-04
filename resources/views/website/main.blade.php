@@ -90,8 +90,8 @@
                                         <li><a href="{{ route('about-us') }}">About School</a></li>
                                         <li><a href="{{route('principal-desk')}}">Principal's Desk</a></li>
                                         <li><a href="{{ route('mission-vision') }}">Mission / Vision</a></li>
-                                        <li><a href="#">Management</a></li>
-                                        <li><a href="#">Staff</a></li>
+                                        <li><a href="{{ route('management') }}">Management</a></li>
+                                        <li><a href="{{ route('staff') }}">Staff</a></li>
                                         <li><a href="#">Affiliation</a></li>
                                     </ul>
                                 </li>
@@ -232,8 +232,8 @@
                                         <li><a href="{{ route('about-us') }}">About School</a></li>
                                         <li><a href="{{ route('principal-desk') }}">Principal's Desk</a></li>
                                         <li><a href="{{ route('mission-vision') }}">Mission / Vision</a></li>
-                                        <li><a href="#">Management</a></li>
-                                        <li><a href="#">Staff</a></li>
+                                        <li><a href="{{ route('management') }}">Management</a></li>
+                                        <li><a href="{{ route('staff') }}">Staff</a></li>
                                         <li><a href="#">Affiliation</a></li>
                                         <li><a href="{{ route('public-disclosure') }}">Public Disclosure</a></li>
                                         <li><a href="{{ route('prospectus') }}">Prospectus</a></li>

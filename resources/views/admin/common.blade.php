@@ -145,7 +145,7 @@
                         </a>
                     </li>
 
-                    <li class="menu-item {{ request()->is('public-disclosure-title*') ? 'active' : '' }}">
+                    <!-- <li class="menu-item {{ request()->is('public-disclosure-title*') ? 'active' : '' }}">
                         <a href="{{ route('public-disclosure-title-list') }}" class="menu-link">
                             <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
                             <div data-i18n="Analytics">Public Disclosure Title</div>
@@ -159,6 +159,48 @@
                             <div data-i18n="Analytics">Public Disclosure</div>
                         </a>
                     </li>
+ -->
+
+                    <li class="menu-item
+                            {{
+    request()->routeIs('public-disclosure-title-*')
+    || (request()->routeIs('public-disclosure-*')
+        && !request()->routeIs('public-disclosure-title-*'))
+    ? 'active open' : ''
+                            }}">
+
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
+                            <div>Public Disclosure</div>
+                        </a>
+
+                        <ul class="menu-sub">
+
+                            <!-- Public Disclosure Title -->
+                            <li class="menu-item {{ request()->routeIs('public-disclosure-title-*') ? 'active' : '' }}">
+                                <a href="{{ route('public-disclosure-title-list') }}" class="menu-link">
+                                    <div>Public Disclosure Title</div>
+                                </a>
+                            </li>
+
+                            <!-- Public Disclosure -->
+                            <li class="menu-item {{ request()->routeIs('public-disclosure-*')
+    && !request()->routeIs('public-disclosure-title-*') ? 'active' : '' }}">
+                                <a href="{{ route('public-disclosure-list') }}" class="menu-link">
+                                    <div>Public Disclosure</div>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
+
+
+
+
+
+
+
 
                     <li class="menu-item {{ request()->is('gallery*') ? 'active' : '' }}">
                         <a href="{{ route('gallery-list') }}" class="menu-link">
@@ -199,9 +241,9 @@
 
                     <li class="menu-item
                         {{ request()->routeIs('category-*')
-                        || request()->routeIs('document-*')
-                        || request()->routeIs('doc-contact')
-                        ? 'active open' : '' }}">
+    || request()->routeIs('document-*')
+    || request()->routeIs('doc-contact')
+    ? 'active open' : '' }}">
 
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
@@ -242,10 +284,45 @@
                         </a>
                     </li>
 
+                    <li class="menu-item {{ request()->is('award*') ? 'active' : '' }}">
+                        <a href="{{ route('award-list') }}" class="menu-link">
+                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <div data-i18n="Analytics">Awards</div>
+                        </a>
+                    </li>
+
                     <li class="menu-item {{ request()->is('event*') ? 'active' : '' }}">
                         <a href="{{ route('event-list') }}" class="menu-link">
                             <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
                             <div data-i18n="Analytics">Events</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ request()->is('management*') ? 'active' : '' }}">
+                        <a href="{{ route('management-list') }}" class="menu-link">
+                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <div data-i18n="Analytics">Management</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ request()->is('school-timing*') ? 'active' : '' }}">
+                        <a href="{{ url('school-time-list') }}" class="menu-link">
+                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
+                            <div data-i18n="Analytics">School Timing</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ request()->is('school-activity*') ? 'active' : '' }}">
+                        <a href="{{ url('school-activity-list') }}" class="menu-link">
+                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
+                            <div data-i18n="Analytics">School Activities</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ request()->is('staff*') ? 'active' : '' }}">
+                        <a href="{{ url('staff-list') }}" class="menu-link">
+                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
+                            <div data-i18n="Analytics">Staff</div>
                         </a>
                     </li>
 

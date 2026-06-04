@@ -3,18 +3,23 @@
 use App\Http\Controllers\AgeCriteriaController;
 use App\Http\Controllers\Api\InquiryFormController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\AwardsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DocContactController;
 use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\ExamScheduleController;
+use App\Http\Controllers\FeesController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HolidayListController;
 use App\Http\Controllers\HomeSliderController;
+use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\MediaController;
 use App\Http\Controllers\NewsController;
 use App\Http\Controllers\PublicDisclosureController;
+use App\Http\Controllers\SchoolActivitiesController;
+use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SyllabusController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
@@ -43,6 +48,12 @@ Route::get('documents', [WebController::class, 'documents'])->name('documents');
 Route::get('feesStructure', [WebController::class, 'feesStructure'])->name('feesStructure');
 Route::get('events', [WebController::class, 'events'])->name('events');
 Route::get('awards', [WebController::class, 'awards'])->name('awards');
+Route::get('management', [WebController::class, 'management'])->name('management');
+Route::get('/staff', [WebController::class, 'staff'])->name('staff');
+Route::get('/school-timing', [WebController::class, 'school-timing'])->name('school-timing');
+
+
+
 
 
 Route::middleware('guest')->group(function () {
@@ -147,4 +158,30 @@ Route::middleware('auth')->group(function () {
     Route::get('/event-add-edit/{slug}', [EventsController::class, 'EventAddEdit'])->name('event-add-edit');
     Route::post('/event-store', [EventsController::class, 'EventStore'])->name('event-store');
     Route::get('/event-delete/{id}', [EventsController::class, 'EventDelete'])->name('event-delete');
+
+
+    Route::get('/award-list', [AwardsController::class, 'awardList'])->name('award-list');
+    Route::get('/award-add-edit/{slug}', [AwardsController::class, 'awardAddEdit'])->name('award-add-edit');
+    Route::post('/award-store', [AwardsController::class, 'awardStore'])->name('award-store');
+    Route::get('/award-delete/{id}', [AwardsController::class, 'awardDelete'])->name('award-delete');
+
+    Route::get('/management-list', [ManagementController::class, 'managementList'])->name('management-list');
+    Route::get('/management-add-edit/{slug}', [ManagementController::class, 'managementAddEdit'])->name('management-add-edit');
+    Route::post('/management-store', [ManagementController::class, 'managementStore'])->name('management-store');
+    Route::get('/management-delete/{id}', [ManagementController::class, 'managementDelete'])->name('management-delete');
+
+
+    Route::get('/school-activity-list', [SchoolActivitiesController::class, 'SchoolActivityList'])->name('school-activity-list');
+    Route::get('/school-activity/{slug}', [SchoolActivitiesController::class, 'SchoolActivityAddEdit']);
+    Route::post('/school-activity-store', [SchoolActivitiesController::class, 'SchoolActivityStore'])->name('school-activity-store');
+    Route::get('/school-activity-delete/{id}', [SchoolActivitiesController::class, 'SchoolActivityDelete']);
+
+    Route::get('/staff-list', [StaffController::class, 'staffList'])->name('staff-list');
+    Route::get('/staff/{id}', [StaffController::class, 'staffAddEdit'])->name('staff-add-edit');
+    Route::post('/staff-store', [StaffController::class, 'staffStore'])->name('staff-store');
+    Route::get('/staff-delete/{id}', [StaffController::class, 'staffDelete'])->name('staff-delete');
+
+
+    Route::get('/school-time-list', [FeesController::class, 'index'])->name('school-time-list');
+    Route::post('/school-time-store', [FeesController::class, 'schoolTimeStore'])->name('school-time-store');
 });

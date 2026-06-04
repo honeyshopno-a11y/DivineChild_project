@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AgeCriteria;
+use App\Models\Awards;
 use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Events;
@@ -12,8 +13,12 @@ use App\Models\HolidayList;
 use App\Models\HomeSlider;
 use App\Models\News;
 use App\Models\PublicDisclosure;
+use App\Models\SchoolTiming;
+use App\Models\Staff;
 use App\Models\Syllabus;
 use App\Models\DocContact;
+use App\Models\Management;
+use App\Models\SchoolActivities;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -98,12 +103,14 @@ class WebController extends Controller
     public function ageCriteria()
     {
         $ageCriteria = AgeCriteria::all();
-        return view("website.ageCriteria" , compact("ageCriteria"));
+        return view("website.ageCriteria", compact("ageCriteria"));
     }
 
     public function feesStructure()
     {
-            return view("website.feesStructure");
+        $activities = SchoolActivities::all();
+        $timing = SchoolTiming::all();
+        return view("website.feesStructure", compact('activities'));
     }
 
     public function syllabus()
@@ -118,16 +125,22 @@ class WebController extends Controller
     }
 
 
-     public function events()
+    public function events()
     {
-         $event_data = Events::orderBy('date', 'asc')->get();
-        return view("website.events" , compact("event_data"));
+        $event_data = Events::orderBy('date', 'asc')->get();
+        return view("website.events", compact("event_data"));
     }
 
     public function awards()
     {
-        // $awards = $awards::all();
-        return view("website.awards");
+        $award_data = Awards::orderBy('date', 'desc')->get();
+        return view("website.awards", compact("award_data"));
+    }
+
+    public function management()
+    {
+        $management_data = Management::all();
+        return view("website.management", compact('management_data'));
     }
 
     public function documents()
@@ -136,6 +149,12 @@ class WebController extends Controller
         $doc_contact = DocContact::first();
 
         return view("website.RequiredDocuments", compact('categories', 'doc_contact'));
+    }
+
+    public function staff()
+    {
+        $staff = Staff::all();
+        return view("website.staff", compact("staff"));
     }
 
     public function transferCertificates()
