@@ -108,73 +108,36 @@
                         <table>
                             <thead>
                                 <tr>
-                                    <th>Sr. No.</th>
+                                    <th>Sr. No</th>
                                     <th>Name of Exam</th>
                                     <th>Exam Date</th>
                                     <th>PTM Date</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>Periodic Test-1</td>
-                                    <td>20/07/2026 To 27/07/2026</td>
-                                    <td>05/06/2026</td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Term-1 (Practical Exam)</td>
-                                    <td>13/08/2026 To 31/08/2026</td>
-                                    <td>09/08/2026</td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Term-1 Date Sheet</td>
-                                    <td>07/09/2026 To 30/09/2026</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>4</td>
-                                    <td>Open House</td>
-                                    <td>10/10/2026</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>5</td>
-                                    <td>Result</td>
-                                    <td>15/10/2026</td>
-                                    <td>28/11/2026</td>
-                                </tr>
-                                <tr>
-                                    <td>6</td>
-                                    <td>Periodic Test-2</td>
-                                    <td>07/12/2026 To 12/12/2026</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>7</td>
-                                    <td>Term-2 (Practical Exam)</td>
-                                    <td>04/01/2027 To 31/01/2027</td>
-                                    <td>09/01/2027</td>
-                                </tr>
-                                <tr>
-                                    <td>8</td>
-                                    <td>Term-2 Date Sheet</td>
-                                    <td>08/02/2027 To 27/02/2027</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>9</td>
-                                    <td>Open House</td>
-                                    <td>15/03/2027</td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <td>10</td>
-                                    <td>Result</td>
-                                    <td>27/03/2027</td>
-                                    <td></td>
-                                </tr>
+                                @if (isset($primaryToSecondaryExamScheduleList) && $primaryToSecondaryExamScheduleList->count() > 0)
+                                    @foreach ($primaryToSecondaryExamScheduleList as $key => $list)
+                                        <tr>
+                                            <td>{{ $key + 1 }}</td>
+                                            <td>{{ $list->exam_name }}</td>
+                                            <td>
+                                                {{ $list->exam_from_date ? \Carbon\Carbon::parse($list->exam_from_date)->format('d/m/Y') : '-' }}
+                                                To
+                                                {{ $list->exam_to_date ? \Carbon\Carbon::parse($list->exam_to_date)->format('d/m/Y') : '-' }}
+                                            </td>
+                                            <td>{{ $list->ptm_date ? \Carbon\Carbon::parse($list->ptm_date)->format('d/m/Y') : '-' }}
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="4" class="text-center py-4">
+                                            <img src="{{ asset('no_data_image.avif') }}" alt="No Data Found"
+                                                style="width: 200px; opacity: 0.7;">
+                                            <p class="text-muted mt-2">No Data Found</p>
+                                        </td>
+                                    </tr>
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -189,11 +152,22 @@
                 </div>
 
                 <div class="preboard-grid">
-                    <div class="preboard-date-card">
-                        <div class="card-label"><i class="far fa-calendar-check"></i> PRE-BOARD 1</div>
-                        <p>Date: <span>16/11/2026 TO 26/11/2026</span></p>
-                    </div>
-                    <div class="preboard-date-card">
+                    @if (isset($preBoardDatesList) && $preBoardDatesList->count() > 0)
+                        @foreach ($preBoardDatesList as $data)
+                            <div class="preboard-date-card">
+                                <div class="card-label"><i class="far fa-calendar-check"></i> {{ $data->title }}</div>
+                                <p>Date: <span>{{ $data->from_date ? \Carbon\Carbon::parse($data->from_date)->format('d/m/Y') : '-' }}
+                                        TO
+                                        {{ $data->to_date ? \Carbon\Carbon::parse($data->to_date)->format('d/m/Y') : '-' }}</span>
+                                </p>
+                            </div>
+                        @endforeach
+                    @else
+                        <img src="{{ asset('no_data_image.avif') }}" alt="No Data Found"
+                            style="width: 200px; opacity: 0.7;">
+                        <p class="text-muted mt-2">No Data Found</p>
+                    @endif
+                    {{-- <div class="preboard-date-card">
                         <div class="card-label"><i class="far fa-calendar-check"></i> OPEN HOUSE</div>
                         <p>Date: <span>05/12/2026</span></p>
                     </div>
@@ -204,7 +178,7 @@
                     <div class="preboard-date-card">
                         <div class="card-label"><i class="far fa-calendar-check"></i> OPEN HOUSE</div>
                         <p>Date: <span>05/01/2027</span></p>
-                    </div>
+                    </div> --}}
                 </div>
             </div><!-- /sub-section -->
 

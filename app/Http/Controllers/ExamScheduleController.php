@@ -94,9 +94,6 @@ class ExamScheduleController extends Controller
             $data->delete();
         }
 
-        return redirect()->route('ExamSchedule-list')
-            ->with('success', 'ExamSchedule Deleted Successfully');
+        return redirect()->route('ExamSchedule-list')->with('success', 'ExamSchedule Deleted Successfully');
     }
-
-
 }

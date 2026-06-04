@@ -13,8 +13,7 @@
                 <h4 class="mb-1 ps-1">ExamSchedule List</h4>
             </div>
             <div class="d-flex align-content-center flex-wrap gap-4 mt-2 mt-md-0">
-                <a href="{{ route('ExamSchedule-add-edit', 'add') }}" role="button" class="btn btn-primary">Add
-                    ExamSchedule</a>
+                <a href="{{ route('ExamSchedule-add-edit', 'add') }}" role="button" class="btn btn-primary">Add ExamSchedule</a>
             </div>
         </div>
 
@@ -60,8 +59,7 @@
                                                     class="btn btn-primary p-0">
                                                     <i class='bxr  bx-edit m-0 p-2' style="font-size: 17px;"></i>
                                                 </a>
-                                                <a href="{{ route('ExamSchedule-delete', $item->id) }}" class="btn btn-danger p-0"
-                                                    onclick="confirmDelete(event, '{{ route('ExamSchedule-delete', $item->id) }}')">
+                                                <a href="{{ route('ExamSchedule-delete', $item->id) }}" class="btn btn-danger p-0" onclick="confirmDelete(event, '{{ route('ExamSchedule-delete', $item->id) }}')">
                                                     <i class="bx bx-trash m-0 p-2" style="font-size: 17px;"></i>
                                                 </a>
                                             </td>

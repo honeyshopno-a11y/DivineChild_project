@@ -9,6 +9,8 @@ use App\Models\Gallery;
 use App\Models\HolidayList;
 use App\Models\HomeSlider;
 use App\Models\News;
+use App\Models\PreBoardDates;
+use App\Models\PrimaryToSecondaryExamSchedule;
 use App\Models\PublicDisclosure;
 use App\Models\Syllabus;
 use Illuminate\Http\Request;
@@ -95,12 +97,12 @@ class WebController extends Controller
     public function ageCriteria()
     {
         $ageCriteria = AgeCriteria::all();
-        return view("website.ageCriteria" , compact("ageCriteria"));
+        return view("website.ageCriteria", compact("ageCriteria"));
     }
 
     public function feesStructure()
     {
-            return view("website.feesStructure");
+        return view("website.feesStructure");
     }
 
     public function syllabus()
@@ -111,11 +113,13 @@ class WebController extends Controller
     }
     public function timetable()
     {
-        return view("website.timetable");
+        $primaryToSecondaryExamScheduleList = PrimaryToSecondaryExamSchedule::get();
+        $preBoardDatesList = PreBoardDates::get();
+        return view("website.timetable", compact('primaryToSecondaryExamScheduleList','preBoardDatesList'));
     }
 
 
-     public function events()
+    public function events()
     {
         return view("website.events");
     }
@@ -135,5 +139,4 @@ class WebController extends Controller
     {
         return view("website.transfer-certificates");
     }
-
 }
