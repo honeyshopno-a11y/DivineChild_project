@@ -199,6 +199,11 @@
                                     <div>Pre-Board Dates</div>
                                 </a>
                             </li>
+                            <li class="menu-item {{ request()->is('practical.examination.schedule') ? 'active' : '' }}">
+                                <a href="{{ route('practical.examination.schedule.list') }}" class="menu-link">
+                                    <div>Practical Examination Schedule</div>
+                                </a>
+                            </li>
                         </ul>
                     </li>
 
@@ -245,6 +250,13 @@
                         <a href="{{ route('inquiry-form-list') }}" class="menu-link">
                             <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
                             <div data-i18n="Analytics">Inquiry</div>
+                        </a>
+                    </li>
+
+                    <li class="menu-item {{ request()->is('facilities.') ? 'active' : '' }}">
+                        <a href="{{ route('facilities.index') }}" class="menu-link">
+                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <div data-i18n="Analytics">Facilities</div>
                         </a>
                     </li>
                     <!-- Layouts -->

@@ -167,18 +167,6 @@
                             style="width: 200px; opacity: 0.7;">
                         <p class="text-muted mt-2">No Data Found</p>
                     @endif
-                    {{-- <div class="preboard-date-card">
-                        <div class="card-label"><i class="far fa-calendar-check"></i> OPEN HOUSE</div>
-                        <p>Date: <span>05/12/2026</span></p>
-                    </div>
-                    <div class="preboard-date-card">
-                        <div class="card-label"><i class="far fa-calendar-check"></i> PRE-BOARD 2</div>
-                        <p>Date: <span>07/12/2026 TO 19/12/2026</span></p>
-                    </div>
-                    <div class="preboard-date-card">
-                        <div class="card-label"><i class="far fa-calendar-check"></i> OPEN HOUSE</div>
-                        <p>Date: <span>05/01/2027</span></p>
-                    </div> --}}
                 </div>
             </div><!-- /sub-section -->
 
@@ -189,24 +177,23 @@
                 </div>
 
                 <div class="practical-grid">
-                    <div class="practical-card">
-                        <div class="practical-card-header">
-                            <i class="fas fa-flask"></i> Science
-                        </div>
-                        <div class="practical-card-body">
-                            <p>Date:</p>
-                            <div class="date-value">01/01/2027 To 20/01/2027</div>
-                        </div>
-                    </div>
-                    <div class="practical-card">
-                        <div class="practical-card-header">
-                            <i class="fas fa-chart-line"></i> Commerce
-                        </div>
-                        <div class="practical-card-body">
-                            <p>Date:</p>
-                            <div class="date-value">01/01/2027 To 20/01/2027</div>
-                        </div>
-                    </div>
+                    @if (isset($practicalExaminationScheduleList) && $practicalExaminationScheduleList->count() > 0)
+                        @foreach ($practicalExaminationScheduleList as $data)
+                            <div class="practical-card">
+                                <div class="practical-card-header">
+                                    <i class="fas fa-flask"></i> {{ $data->title }}
+                                </div>
+                                <div class="practical-card-body">
+                                    <p>Date:</p>
+                                    <div class="date-value">
+                                        {{ $data->from_date ? \Carbon\Carbon::parse($data->from_date)->format('d/m/Y') : '-' }}
+                                        TO
+                                        {{ $data->to_date ? \Carbon\Carbon::parse($data->to_date)->format('d/m/Y') : '-' }}
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    @endif
                 </div>
             </div><!-- /sub-section -->
 

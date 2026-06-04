@@ -1,10 +1,11 @@
 @extends('admin.common')
+@section('title', 'Inquiry Form List')
 @section('content')
 
-    <meta charset="utf-8" />
+    {{-- <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
-    <title>Inquiry Form List</title>
+    <title>Inquiry Form List</title> --}}
 
     <div class="px-3 px-md-5 flex-grow-1 container-p-y">
 
@@ -35,8 +36,8 @@
                             </thead>
 
                             <tbody>
-                                @if(count($inquiry_data) != 0)
-                                    @foreach($inquiry_data as $key => $item)
+                                @if (count($inquiry_data) != 0)
+                                    @foreach ($inquiry_data as $key => $item)
                                         <tr>
                                             <td class="text-center">{{ $key + 1 }}</td>
 
@@ -83,7 +84,7 @@
         @session('success')
             <div class="custom-alert" id="custom_alert" role="alert">
                 <div>
-                     ✅ <strong>{{ session('success') }}</strong><br>
+                    ✅ <strong>{{ session('success') }}</strong><br>
                 </div>
                 <span class="close-btn" onclick="this.parentElement.style.display='none';">&times;</span>
             </div>

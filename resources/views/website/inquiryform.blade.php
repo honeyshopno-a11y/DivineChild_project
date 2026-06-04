@@ -1,8 +1,5 @@
 @extends('website.main')
 @section('content')
-
-
-
     <!-- InstanceBeginEditable name="slider" -->
     <!-- Page Banner Start -->
     <div class="section page-banner-section">
@@ -13,9 +10,9 @@
                         <div class="page-banner text-center">
                             <h2 class="title">Inquiry form</h2>
                             <!-- <ul class="breadcrumb justify-content-center">
-                                            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
-                                            <li class="breadcrumb-item active" aria-current="page">Gallery</li>
-                                        </ul> -->
+                                                    <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                                    <li class="breadcrumb-item active" aria-current="page">Gallery</li>
+                                                </ul> -->
                         </div>
                     </div>
                 </div>
@@ -240,7 +237,7 @@
                                         <span class="required-asterisk">*</span>
                                     </label>
                                     <!-- Added name="primary_mobile_no" and required -->
-                                    <input type="tel" name="primary_mobile_no" class="premium-input" required>
+                                    <input type="tel" name="primary_mobile_no" class="premium-input" maxlength="10" required>
                                 </div>
 
                                 <!-- Row 4 -->
@@ -317,7 +314,8 @@
                                             <p style="margin: 0; font-size: 11px; color: #718096;">Upload Photos at
                                                 the maximum size of 5MB.</p>
                                         </div>
-                                        <input type="file" name="father_photo" style="display:none;" accept="image/*" />
+                                        <input type="file" name="father_photo" style="display:none;"
+                                            accept="image/*" />
                                     </label>
                                 </div>
                                 <div class="col-md-4 mb-4">
@@ -345,14 +343,16 @@
                                 <div class="col-md-4 mb-4">
                                     <label class="file-upload-box d-flex align-items-center p-3 h-100 w-100"
                                         style="margin:0;cursor:pointer;">
-                                        <i class="fas fa-female fa-2x me-3" style="color: #63b3ed; margin-right: 15px;"></i>
+                                        <i class="fas fa-female fa-2x me-3"
+                                            style="color: #63b3ed; margin-right: 15px;"></i>
                                         <div>
                                             <p style="margin: 0; font-size: 14px; font-weight: 600; color: #2d3748;">
                                                 Mother Photo</p>
                                             <p style="margin: 0; font-size: 11px; color: #718096;">Upload Photos at
                                                 the maximum size of 5MB.</p>
                                         </div>
-                                        <input type="file" name="mother_photo" style="display:none;" accept="image/*" />
+                                        <input type="file" name="mother_photo" style="display:none;"
+                                            accept="image/*" />
                                     </label>
                                 </div>
                                 <div class="col-md-4 mb-4">
@@ -383,7 +383,8 @@
                         <!-- Sibling Details -->
                         <div class="premium-form-container">
                             <div class="form-section-title">
-                                <div class="icon-box" style="background: #2b6cb0;"><i class="fas fa-user-friends"></i></div>
+                                <div class="icon-box" style="background: #2b6cb0;"><i class="fas fa-user-friends"></i>
+                                </div>
                                 <div>
                                     <h3>SIBLING DETAILS :</h3>
                                     <p>Details of siblings studying in the same or other schools.</p>
@@ -412,7 +413,8 @@
                         <!-- Additional Details -->
                         <div class="premium-form-container">
                             <div class="form-section-title">
-                                <div class="icon-box" style="background: #d69e2e;"><i class="fas fa-plus-square"></i></div>
+                                <div class="icon-box" style="background: #d69e2e;"><i class="fas fa-plus-square"></i>
+                                </div>
                                 <div>
                                     <h3 style="color: #b7791f;">ADDITIONAL DETAILS :</h3>
                                     <p>Extra information like address, Source etc.</p>
@@ -453,8 +455,4 @@
     </div>
     <!-- Inquiry Form End -->
     <!-- InstanceEndEditable -->
-
-
-
-
 @endsection

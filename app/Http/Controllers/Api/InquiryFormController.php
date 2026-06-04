@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Facilities;
 use App\Models\InquiryForm;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Log;
 
 class InquiryFormController extends Controller
 {
@@ -106,5 +108,23 @@ class InquiryFormController extends Controller
         return redirect()
             ->route('inquiry-form-list')
             ->with('success', 'Inquiry Deleted Successfully');
+    }
+
+    public function facilitiesIndex()
+    {
+        $facilitiesData = Facilities::first();
+        return view('admin.facilities.index',compact('facilitiesData'));
+    }
+
+    public function facilitiesStore(Request $request)
+    {
+        $facilitiesData = Facilities::first();
+        if (empty($facilitiesData)) {
+            $facilitiesData = new Facilities;
+        }
+        $facilitiesData->description = $request->notes;
+        $facilitiesData->save();
+
+        return redirect()->back()->with('success', 'Facilities Updated Successfully.');
     }
 }

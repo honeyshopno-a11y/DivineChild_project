@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\AgeCriteria;
 use App\Models\Contact;
 use App\Models\ExamSchedule;
+use App\Models\Facilities;
 use App\Models\Gallery;
 use App\Models\HolidayList;
 use App\Models\HomeSlider;
 use App\Models\News;
+use App\Models\PracticalExaminationSchedule;
 use App\Models\PreBoardDates;
 use App\Models\PrimaryToSecondaryExamSchedule;
 use App\Models\PublicDisclosure;
@@ -115,9 +117,9 @@ class WebController extends Controller
     {
         $primaryToSecondaryExamScheduleList = PrimaryToSecondaryExamSchedule::get();
         $preBoardDatesList = PreBoardDates::get();
-        return view("website.timetable", compact('primaryToSecondaryExamScheduleList','preBoardDatesList'));
+        $practicalExaminationScheduleList = PracticalExaminationSchedule::get();
+        return view("website.timetable", compact('primaryToSecondaryExamScheduleList', 'preBoardDatesList', 'practicalExaminationScheduleList'));
     }
-
 
     public function events()
     {
@@ -128,6 +130,12 @@ class WebController extends Controller
     {
         // $awards = $awards::all();
         return view("website.awards");
+    }
+
+    public function facilities()
+    {
+        $facilities = Facilities::first();
+        return view("website.facilities",compact('facilities'));
     }
 
     public function documents()
