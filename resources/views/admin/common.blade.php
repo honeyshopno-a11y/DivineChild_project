@@ -1,6 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
-    data-assets-path="../assets/" data-template="vertical-menu-template-free">
+<html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default" data-assets-path="../assets/"
+    data-template="vertical-menu-template-free">
 
 <head>
     <meta charset="utf-8" />
@@ -52,6 +52,11 @@
     <script src="//cdn.datatables.net/2.3.1/js/dataTables.min.js"></script>
     <link href='https://cdn.boxicons.com/fonts/basic/boxicons.min.css' rel='stylesheet'>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+        .menu-link i {
+            margin-right: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -109,8 +114,7 @@
                         </span> --}}
                         <a href="{{ route('dashboard') }}" class="pb-3 px-0 text-start">
                             <!-- <img src="{{ asset('assets/img/logo/logo-1.webp') }}" alt="logo" class="img-fluid p-3"> -->
-                            <img src="{{ asset('assets/img/icon/main-logo.png') }}" alt="logo"
-                                class="img-fluid p-3">
+                            <img src="{{ asset('assets/img/icon/main-logo.png') }}" alt="logo" class="img-fluid p-3">
 
                         </a>
                     </a>
@@ -127,51 +131,36 @@
 
                     <li class="menu-item {{ request()->is('dashboard*') ? 'active' : '' }}">
                         <a href="{{ route('dashboard') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-home-smile"></i>
+                            <i class="bx bx-home-smile"></i>
                             <div data-i18n="Analytics">Dashboard</div>
                         </a>
                     </li>
 
                     <li class="menu-item {{ request()->is('slider*') ? 'active' : '' }}">
                         <a href="{{ route('slider-list') }}" class="menu-link">
-                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-slideshow"></i>
                             <div data-i18n="Analytics">Home-Slider</div>
                         </a>
                     </li>
 
                     <li class="menu-item {{ request()->is('news*') ? 'active' : '' }}">
                         <a href="{{ route('news-list') }}" class="menu-link">
-                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-news"></i>
                             <div data-i18n="Analytics">News</div>
                         </a>
                     </li>
 
-                    <!-- <li class="menu-item {{ request()->is('public-disclosure-title*') ? 'active' : '' }}">
-                        <a href="{{ route('public-disclosure-title-list') }}" class="menu-link">
-                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
-                            <div data-i18n="Analytics">Public Disclosure Title</div>
-                        </a>
-                    </li>
-
-                    <li
-                        class="menu-item {{ request()->is('public-disclosure') || request()->is('public-disclosure-list') || request()->is('public-disclosure-add-edit/*') ? 'active' : '' }}">
-                        <a href="{{ route('public-disclosure-list') }}" class="menu-link">
-                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
-                            <div data-i18n="Analytics">Public Disclosure</div>
-                        </a>
-                    </li>
- -->
 
                     <li class="menu-item
-                            {{
+                        {{
     request()->routeIs('public-disclosure-title-*')
     || (request()->routeIs('public-disclosure-*')
         && !request()->routeIs('public-disclosure-title-*'))
     ? 'active open' : ''
-                            }}">
+                        }}">
 
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-file"></i>
                             <div>Public Disclosure</div>
                         </a>
 
@@ -200,60 +189,70 @@
 
 
 
-
-
-
                     <li class="menu-item {{ request()->is('gallery*') ? 'active' : '' }}">
                         <a href="{{ route('gallery-list') }}" class="menu-link">
-                            <i class="bx bx-currency-note menu-icon tf-icons"></i>
+                            <i class="bx bx-image-alt"></i>
                             <div data-i18n="Analytics">Gallery</div>
                         </a>
                     </li>
 
                     <li class="menu-item {{ request()->is('syllabus*') ? 'active' : '' }}">
                         <a href="{{ route('syllabus-list') }}" class="menu-link">
-                            <i class="bx bx-currency-note menu-icon tf-icons"></i>
+                            <i class="bx bx-book-open"></i>
                             <div data-i18n="Analytics">Syllabus</div>
                         </a>
                     </li>
 
                     <li class="menu-item {{ request()->is('ExamSchedule*') ? 'active' : '' }}">
                         <a href="{{ route('ExamSchedule-list') }}" class="menu-link">
-                            <i class="bx bx-currency-note menu-icon tf-icons"></i>
+                            <i class="bx bx-calendar-event"></i>
                             <div data-i18n="Analytics">Exam Schedule</div>
                         </a>
                     </li>
 
-                    <li
-                        class="menu-item {{ request()->is('primary.to.secondary.exam.schedule*') ? 'active open' : '' }}">
+                    <li class="menu-item {{
+    request()->routeIs('primary.to.secondary.exam.schedule.*')
+    || request()->routeIs('pre.board.dates.*')
+    ? 'active open' : ''
+}}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-time-five"></i>
                             <div>Time Table</div>
                         </a>
+
                         <ul class="menu-sub">
-                            <li class="menu-item {{ request()->is('primary.to.secondary.exam.schedule') ? 'active' : '' }}">
+
+                            <li class="menu-item {{
+    request()->routeIs('primary.to.secondary.exam.schedule.*')
+    ? 'active' : ''
+        }}">
                                 <a href="{{ route('primary.to.secondary.exam.schedule.list') }}" class="menu-link">
                                     <div>Primary to Secondary Exam Schedule</div>
                                 </a>
                             </li>
-                            <li class="menu-item {{ request()->is('pre.board.dates') ? 'active' : '' }}">
+
+                            <li class="menu-item {{
+    request()->routeIs('pre.board.dates.*')
+    ? 'active' : ''
+        }}">
                                 <a href="{{ route('pre.board.dates.list') }}" class="menu-link">
                                     <div>Pre-Board Dates</div>
                                 </a>
                             </li>
+
                         </ul>
                     </li>
 
                     <li class="menu-item {{ request()->is('holidayList*') ? 'active' : '' }}">
                         <a href="{{ route('holiday-list') }}" class="menu-link">
-                            <i class="bx bx-currency-note menu-icon tf-icons"></i>
+                            <i class="bx bx-calendar-star"></i>
                             <div data-i18n="Analytics">Holiday List</div>
                         </a>
                     </li>
 
                     <li class="menu-item {{ request()->is('ageCriteria*') ? 'active' : '' }}">
                         <a href="{{ route('ageCriteria-list') }}" class="menu-link">
-                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-user-check"></i>
                             <div data-i18n="Analytics">Age Criteria</div>
                         </a>
                     </li>
@@ -267,7 +266,7 @@
     ? 'active open' : '' }}">
 
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
-                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-folder-open"></i>
                             <div>Required Documents</div>
                         </a>
 
@@ -300,60 +299,90 @@
 
                     <li class="menu-item {{ request()->is('contact*') ? 'active' : '' }}">
                         <a href="{{ route('contact') }}" class="menu-link">
-                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-phone"></i>
                             <div data-i18n="Analytics">Contact</div>
                         </a>
                     </li>
 
                     <li class="menu-item {{ request()->is('award*') ? 'active' : '' }}">
                         <a href="{{ route('award-list') }}" class="menu-link">
-                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-trophy"></i>
                             <div data-i18n="Analytics">Awards</div>
                         </a>
                     </li>
 
                     <li class="menu-item {{ request()->is('event*') ? 'active' : '' }}">
                         <a href="{{ route('event-list') }}" class="menu-link">
-                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-calendar"></i>
                             <div data-i18n="Analytics">Events</div>
                         </a>
                     </li>
 
                     <li class="menu-item {{ request()->is('management*') ? 'active' : '' }}">
                         <a href="{{ route('management-list') }}" class="menu-link">
-                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-group"></i>
                             <div data-i18n="Analytics">Management</div>
                         </a>
                     </li>
 
-                    <li class="menu-item {{ request()->is('school-timing*') ? 'active' : '' }}">
-                        <a href="{{ url('school-time-list') }}" class="menu-link">
-                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
-                            <div data-i18n="Analytics">School Timing</div>
-                        </a>
-                    </li>
+                    <li class="menu-item
+    {{
+    request()->routeIs('fees-structure-*')
+    || request()->routeIs('fees-structure-details-*')
+    || request()->routeIs('school-time-*')
+    || request()->routeIs('school-activity-*')
+    ? 'active open' : ''
+    }}">
 
-                    <li class="menu-item {{ request()->is('school-activity*') ? 'active' : '' }}">
-                        <a href="{{ url('school-activity-list') }}" class="menu-link">
-                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
-                            <div data-i18n="Analytics">School Activities</div>
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="bx bx-rupee menu-icon tf-icons"></i>
+                            <div>Fees Structure</div>
                         </a>
-                    </li>
 
+                        <ul class="menu-sub">
+
+                            <li class="menu-item {{ request()->routeIs('fees-structure-*') ? 'active' : '' }}">
+                                <a href="{{ route('fees-structure-list') }}" class="menu-link">
+                                    <div>Fees Structure List</div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item {{ request()->routeIs('fees-structure-details-*') ? 'active' : '' }}">
+                                <a href="{{ route('fees-structure-details-list') }}" class="menu-link">
+                                    <div>Fees Structure List Details</div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item {{ request()->routeIs('school-time-*') ? 'active' : '' }}">
+                                <a href="{{ route('school-time-list') }}" class="menu-link">
+                                    <div>School Timing</div>
+                                </a>
+                            </li>
+
+                            <li class="menu-item {{ request()->routeIs('school-activity-*') ? 'active' : '' }}">
+                                <a href="{{ route('school-activity-list') }}" class="menu-link">
+                                    <div>School Activities</div>
+                                </a>
+                            </li>
+
+                        </ul>
+
+                    </li>
                     <li class="menu-item {{ request()->is('staff*') ? 'active' : '' }}">
                         <a href="{{ url('staff-list') }}" class="menu-link">
-                            <i class='bxr bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-user-circle"></i>
                             <div data-i18n="Analytics">Staff</div>
                         </a>
                     </li>
                     <li class="menu-item {{ request()->is('inquiry-form*') ? 'active' : '' }}">
                         <a href="{{ route('inquiry-form-list') }}" class="menu-link">
-                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <i class="bx bx-message-dots"></i>
                             <div data-i18n="Analytics">Inquiry</div>
                         </a>
                     </li>
                     <!-- Layouts -->
                 </ul>
+
             </aside>
             <!-- / Menu -->
 
@@ -391,8 +420,7 @@
 
                             <!-- User -->
                             <li class="nav-item navbar-dropdown dropdown-user dropdown">
-                                <a class="nav-link dropdown-toggle hide-arrow" href="#"
-                                    data-bs-toggle="dropdown">
+                                <a class="nav-link dropdown-toggle hide-arrow" href="#" data-bs-toggle="dropdown">
                                     <div class="avatar avatar-online">
                                         <img src="{{ asset('admin_css/assets/img/avatars/1.png') }}" alt
                                             class="w-px-40 h-auto rounded-circle" />
@@ -404,8 +432,8 @@
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">
-                                                        <img src="{{ asset('admin_css/assets/img/avatars/1.png') }}"
-                                                            alt class="w-px-40 h-auto rounded-circle" />
+                                                        <img src="{{ asset('admin_css/assets/img/avatars/1.png') }}" alt
+                                                            class="w-px-40 h-auto rounded-circle" />
                                                     </div>
                                                 </div>
                                                 <div class="flex-grow-1">
@@ -421,8 +449,7 @@
                                     </li>
 
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
+                                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                             <i class="bx bx-power-off me-2"></i>
                                             <span class="align-middle">Log Out</span>
@@ -492,7 +519,7 @@
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
     <script>
-        $(document).ready(function() {
+        $(document).ready(function () {
             $('#myTable').DataTable();
         });
 

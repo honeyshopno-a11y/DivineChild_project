@@ -28,7 +28,7 @@
                             <thead class="border-top">
                                 <tr>
                                     <th class="text-center">SL</th>
-                                    <th class="text-center">Main Title</th>
+                                    <th class="text-center">Year</th>
                                     <th class="text-center">Holiday</th>
                                     <th class="text-center">Month</th>
                                     <th class="text-center">Day</th>
@@ -44,7 +44,7 @@
 
                                             <td class="text-center">
                                                 <h6 class="text-nowrap mb-0">
-                                                    {{ $item->main_title ?? 'N/A' }}
+                                                    {{ $item->year ?? 'N/A' }}
                                                 </h6>
                                             </td>
 

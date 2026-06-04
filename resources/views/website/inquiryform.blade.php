@@ -138,7 +138,13 @@
 
             <div class="row justify-content-center">
                 <div class="col-lg-11">
-                    <form action="#" id="inquiryForm" method="POST">
+                    @if(session('success'))
+                        <div class="alert alert-success mb-4" style="background-color: #d4edda; color: #155724; border-color: #c3e6cb; padding: 15px; border-radius: 5px;">
+                            {{ session('success') }}
+                        </div>
+                    @endif
+                    <form action="{{ route('inquiryform.store') }}" id="inquiryForm" method="POST" enctype="multipart/form-data">
+                        @csrf
 
                         <!-- Basic Details -->
                         <div class="premium-form-container">
@@ -200,6 +206,9 @@
                                         <input type="file" name="child_photo" style="display:none;" accept="image/*"
                                             required />
                                     </label>
+                                    @error('child_photo')
+                                        <div class="text-danger mt-1" style="font-size: 12px; color: #e53e3e;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Row 2 -->
@@ -208,7 +217,10 @@
                                         <span class="required-asterisk">*</span>
                                     </label>
                                     <!-- Added name="student_name" and required -->
-                                    <input type="text" name="student_name" class="premium-input" required>
+                                    <input type="text" name="student_name" class="premium-input" value="{{ old('student_name') }}" required>
+                                    @error('student_name')
+                                        <div class="text-danger mt-1" style="font-size: 12px; color: #e53e3e;">{{ $message }}</div>
+                                    @enderror
                                 </div>
                                 <div class="col-md-4 mb-4">
                                     <label class="premium-label">Select Gender <span
@@ -216,9 +228,12 @@
                                     <!-- Added name="gender" and required -->
                                     <select class="premium-input" name="gender" required>
                                         <option value="">Select Gender</option>
-                                        <option value="Male">Male</option>
-                                        <option value="Female">Female</option>
+                                        <option value="Male" {{ old('gender') == 'Male' ? 'selected' : '' }}>Male</option>
+                                        <option value="Female" {{ old('gender') == 'Female' ? 'selected' : '' }}>Female</option>
                                     </select>
+                                    @error('gender')
+                                        <div class="text-danger mt-1" style="font-size: 12px; color: #e53e3e;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Row 3 -->
@@ -227,7 +242,10 @@
                                         <span class="required-asterisk">*</span>
                                     </label>
                                     <!-- Added name="date_of_birth" and required -->
-                                    <input type="date" name="date_of_birth" class="premium-input" required>
+                                    <input type="date" name="date_of_birth" class="premium-input" value="{{ old('date_of_birth') }}" required>
+                                    @error('date_of_birth')
+                                        <div class="text-danger mt-1" style="font-size: 12px; color: #e53e3e;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <div class="col-md-4 mb-4">
@@ -240,7 +258,10 @@
                                         <span class="required-asterisk">*</span>
                                     </label>
                                     <!-- Added name="primary_mobile_no" and required -->
-                                    <input type="tel" name="primary_mobile_no" class="premium-input" required>
+                                    <input type="tel" name="primary_mobile_no" class="premium-input" value="{{ old('primary_mobile_no') }}" required>
+                                    @error('primary_mobile_no')
+                                        <div class="text-danger mt-1" style="font-size: 12px; color: #e53e3e;">{{ $message }}</div>
+                                    @enderror
                                 </div>
 
                                 <!-- Row 4 -->

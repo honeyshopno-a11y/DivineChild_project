@@ -69,7 +69,7 @@
                                         <li><a href="{{ route('mission-vision') }}">Mission / Vision</a></li>
                                         <li><a href="{{ route('management') }}">Management</a></li>
                                         <li><a href="{{ route('staff') }}">Staff</a></li>
-                                        <li><a href="#">Affiliation</a></li>
+                                        <!-- <li><a href="#">Affiliation</a></li> -->
                                     </ul>
                                 </li>
 
@@ -142,7 +142,7 @@
                                 <li><a href="{{ route('mission-vision') }}">Mission / Vision</a></li>
                                 <li><a href="{{ route('management') }}">Management</a></li>
                                 <li><a href="{{ route('staff') }}">Staff</a></li>
-                                <li><a href="#">Affiliation</a></li>
+                                <!-- <li><a href="#">Affiliation</a></li> -->
                             </ul>
                         </li>
 

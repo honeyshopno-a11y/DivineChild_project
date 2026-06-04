@@ -31,16 +31,16 @@
 
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">
-                                        Main Title
+                                        Year
                                         <span class="text-danger">*</span>
                                     </label>
 
-                                    <input type="text" name="main_title"
-                                        class="form-control @error('main_title') is-invalid @enderror"
-                                        placeholder="Enter Main Title"
-                                        value="{{ $holiday_data == '' ? old('main_title') : $holiday_data->main_title }}">
+                                    <input type="text" name="year"
+                                        class="form-control @error('year') is-invalid @enderror"
+                                        placeholder="Enter Year"
+                                        value="{{ $holiday_data == '' ? old('year') : $holiday_data->year }}">
 
-                                    @error('main_title')
+                                    @error('year')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>

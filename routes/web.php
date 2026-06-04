@@ -30,11 +30,16 @@ use Illuminate\Support\Facades\Route;
 //     return view('website.index');
 // });
 
+Route::get('/facilities', function () {
+    return view('facility');
+});
+
 Route::get('/', [WebController::class, 'index'])->name('home');
 Route::get('/about-us', [WebController::class, 'aboutUs'])->name('about-us');
 Route::get('/contact-us', [WebController::class, 'contactUs'])->name('contact-us');
 Route::get('/gallery', [WebController::class, 'gallery'])->name('gallery');
 Route::get('/inquiryform', [WebController::class, 'inquiryform'])->name('inquiryform');
+Route::post('/inquiryform', [InquiryFormController::class, 'webStore'])->name('inquiryform.store');
 Route::get('/mission-vision', [WebController::class, 'missionVision'])->name('mission-vision');
 Route::get('/principal-desk', [WebController::class, 'principalDesk'])->name('principal-desk');
 Route::get('prospectus', [WebController::class, 'prospectus'])->name('prospectus');
@@ -128,7 +133,7 @@ Route::middleware('auth')->group(function () {
     Route::get('ExamSchedule-add-edit/{slug}', [ExamScheduleController::class, 'ExamScheduleAddEdit'])->name('ExamSchedule-add-edit');
     Route::post('ExamSchedule-store', [ExamScheduleController::class, 'ExamScheduleStore'])->name('ExamSchedule-store');
     Route::get('ExamSchedule-delete/{id}', [ExamScheduleController::class, 'ExamScheduleDelete'])->name('ExamSchedule-delete');
-    
+
     Route::get('primary/to/secondary/exam/schedule/list', [TimeTableController::class, 'primaryToSecondaryExamScheduleList'])->name('primary.to.secondary.exam.schedule.list');
     Route::get('primary/to/secondary/exam/schedule/{slug}', [TimeTableController::class, 'primaryToSecondaryExamScheduleAddEdit'])->name('primary.to.secondary.exam.schedule.addedit');
     Route::post('primary/to/secondary/exam/schedule/store', [TimeTableController::class, 'primaryToSecondaryExamScheduleStore'])->name('primary.to.secondary.exam.schedule.store');
@@ -194,4 +199,15 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/school-time-list', [FeesController::class, 'index'])->name('school-time-list');
     Route::post('/school-time-store', [FeesController::class, 'schoolTimeStore'])->name('school-time-store');
+
+    Route::get('/fees-structure-list', [FeesController::class, 'feesStructureList'])->name('fees-structure-list');
+    Route::get('/fees-structure/{id}', [FeesController::class, 'feesStructureAddEdit'])->name('fees-structure-add-edit');
+    Route::post('/fees-structure-store', [FeesController::class, 'feesStructureStore'])->name('fees-structure-store');
+    Route::get('/fees-structure-delete/{id}', [FeesController::class, 'feesStructureDelete'])->name('fees-structure-delete');
+
+    Route::get('/fees-structure-details-list', [FeesController::class, 'feesStructureDetailsList'])->name('fees-structure-details-list');
+    Route::get('/fees-structure-details/{id}', [FeesController::class, 'feesStructureDetailsAddEdit'])->name('fees-structure-details-add-edit');
+    Route::post('/fees-structure-details-store', [FeesController::class, 'feesStructureDetailsStore'])->name('fees-structure-details-store');
+    Route::get('/fees-structure-details-delete/{id}', [FeesController::class, 'feesStructureDetailsDelete'])->name('fees-structure-details-delete');
+    Route::post('/fees-structure-note-store', [FeesController::class, 'feesStructureNoteStore'])->name('fees-structure-note-store');
 });

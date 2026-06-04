@@ -8,6 +8,9 @@ use App\Models\Category;
 use App\Models\Contact;
 use App\Models\Events;
 use App\Models\ExamSchedule;
+use App\Models\FeeStructure;
+use App\Models\FeeStructureDetail;
+use App\Models\FeeStructureDetailNote;
 use App\Models\Gallery;
 use App\Models\HolidayList;
 use App\Models\HomeSlider;
@@ -110,9 +113,31 @@ class WebController extends Controller
 
     public function feesStructure()
     {
+        $categories = FeeStructure::orderBy('id')->get();
+
+
+        $feeDetails = FeeStructureDetail::orderBy('id')->get()->map(function ($item) {
+            $item->fee_details = is_array($item->fee_details)
+                ? $item->fee_details
+                : json_decode($item->fee_details, true);
+            return $item;
+        });
+
+
+        $totals = [];
+        foreach ($categories as $cat) {
+            $total = 0;
+            foreach ($feeDetails as $row) {
+                $total += (float) ($row->fee_details[$cat->title] ?? 0);
+            }
+            $totals[$cat->title] = $total;
+        }
+
+
+        $fee_structure_details_note = FeeStructureDetailNote::first();
         $activities = SchoolActivities::all();
         $timing = SchoolTiming::all();
-        return view("website.feesStructure", compact('activities'));
+        return view("website.feesStructure", compact('activities', 'timing' , 'categories' , 'fee_structure_details_note' ,'feeDetails' ,'totals'));
     }
 
     public function syllabus()
@@ -125,7 +150,7 @@ class WebController extends Controller
     {
         $primaryToSecondaryExamScheduleList = PrimaryToSecondaryExamSchedule::get();
         $preBoardDatesList = PreBoardDates::get();
-        return view("website.timetable", compact('primaryToSecondaryExamScheduleList','preBoardDatesList'));
+        return view("website.timetable", compact('primaryToSecondaryExamScheduleList', 'preBoardDatesList'));
     }
 
 
