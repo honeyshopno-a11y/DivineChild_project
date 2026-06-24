@@ -56,6 +56,15 @@
         .menu-link i {
             margin-right: 10px;
         }
+
+        .layout-menu {
+            height: 100vh;
+        }
+
+        .layout-menu .menu-inner {
+            overflow-y: auto;
+            padding-bottom: 30px !important;
+        }
     </style>
 </head>
 
@@ -213,6 +222,7 @@
                     <li class="menu-item {{
     request()->routeIs('primary.to.secondary.exam.schedule.*')
     || request()->routeIs('pre.board.dates.*')
+    || request()->routeIs('practical.examination.schedule.*')
     ? 'active open' : ''
 }}">
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -239,15 +249,20 @@
                                     <div>Pre-Board Dates</div>
                                 </a>
                             </li>
-                            <li class="menu-item {{ request()->is('practical.examination.schedule') ? 'active' : '' }}">
+
+                            <li class="menu-item {{
+    request()->routeIs('practical.examination.schedule.*')
+    ? 'active' : ''
+        }}">
                                 <a href="{{ route('practical.examination.schedule.list') }}" class="menu-link">
                                     <div>Practical Examination Schedule</div>
                                 </a>
                             </li>
+
                         </ul>
                     </li>
 
-                    <li class="menu-item {{ request()->is('holidayList*') ? 'active' : '' }}">
+                    <li class="menu-item {{ request()->is('holiday*') ? 'active' : '' }}">
                         <a href="{{ route('holiday-list') }}" class="menu-link">
                             <i class="bx bx-calendar-star"></i>
                             <div data-i18n="Analytics">Holiday List</div>
@@ -329,14 +344,14 @@
                         </a>
                     </li>
 
-                    <li class="menu-item
-    {{
+
+                    <li class="menu-item {{
     request()->routeIs('fees-structure-*')
     || request()->routeIs('fees-structure-details-*')
     || request()->routeIs('school-time-*')
     || request()->routeIs('school-activity-*')
     ? 'active open' : ''
-    }}">
+}}">
 
                         <a href="javascript:void(0);" class="menu-link menu-toggle">
                             <i class="bx bx-rupee menu-icon tf-icons"></i>
@@ -345,25 +360,52 @@
 
                         <ul class="menu-sub">
 
-                            <li class="menu-item {{ request()->routeIs('fees-structure-*') ? 'active' : '' }}">
+                            <!-- Fees Structure -->
+                            <li class="menu-item {{
+    request()->routeIs('fees-structure-list')
+    || request()->routeIs('fees-structure-add-edit')
+    || request()->routeIs('fees-structure-store')
+    || request()->routeIs('fees-structure-delete')
+    ? 'active' : ''
+        }}">
                                 <a href="{{ route('fees-structure-list') }}" class="menu-link">
                                     <div>Fees Structure List</div>
                                 </a>
                             </li>
 
-                            <li class="menu-item {{ request()->routeIs('fees-structure-details-*') ? 'active' : '' }}">
+                            <!-- Fees Structure Details -->
+                            <li class="menu-item {{
+    request()->routeIs('fees-structure-details-list')
+    || request()->routeIs('fees-structure-details-add-edit')
+    || request()->routeIs('fees-structure-details-store')
+    || request()->routeIs('fees-structure-details-delete')
+    || request()->routeIs('fees-structure-note-store')
+    ? 'active' : ''
+        }}">
                                 <a href="{{ route('fees-structure-details-list') }}" class="menu-link">
                                     <div>Fees Structure List Details</div>
                                 </a>
                             </li>
 
-                            <li class="menu-item {{ request()->routeIs('school-time-*') ? 'active' : '' }}">
+                            <!-- School Timing -->
+                            <li class="menu-item {{
+    request()->routeIs('school-time-list')
+    || request()->routeIs('school-time-store')
+    ? 'active' : ''
+        }}">
                                 <a href="{{ route('school-time-list') }}" class="menu-link">
                                     <div>School Timing</div>
                                 </a>
                             </li>
 
-                            <li class="menu-item {{ request()->routeIs('school-activity-*') ? 'active' : '' }}">
+                            <!-- School Activities -->
+                            <li class="menu-item {{
+    request()->routeIs('school-activity-list')
+    || request()->routeIs('school-activity-add-edit')
+    || request()->routeIs('school-activity-store')
+    || request()->routeIs('school-activity-delete')
+    ? 'active' : ''
+}}">
                                 <a href="{{ route('school-activity-list') }}" class="menu-link">
                                     <div>School Activities</div>
                                 </a>
@@ -372,6 +414,8 @@
                         </ul>
 
                     </li>
+
+
                     <li class="menu-item {{ request()->is('staff*') ? 'active' : '' }}">
                         <a href="{{ url('staff-list') }}" class="menu-link">
                             <i class="bx bx-user-circle"></i>
@@ -385,12 +429,21 @@
                         </a>
                     </li>
 
-                    <li class="menu-item {{ request()->is('facilities.') ? 'active' : '' }}">
+                    <li class="menu-item {{ request()->is('facilities*') ? 'active' : '' }}">
                         <a href="{{ route('facilities.index') }}" class="menu-link">
                             <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
                             <div data-i18n="Analytics">Facilities</div>
                         </a>
                     </li>
+
+                    <li class="menu-item {{ request()->is('transfer-certificate*') ? 'active' : '' }}">
+                        <a href="{{ route('transfer-certificate-list') }}" class="menu-link">
+                            <i class='bxr  bx-clipboard-detail menu-icon tf-icons'></i>
+                            <div data-i18n="Analytics">Transfer Certificate</div>
+                        </a>
+                    </li>
+
+
                     <!-- Layouts -->
                 </ul>
 

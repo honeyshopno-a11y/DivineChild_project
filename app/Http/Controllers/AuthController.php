@@ -55,21 +55,59 @@ class AuthController extends Controller
     |--------------------------------------------------------------------------
     */
 
+    // public function login(Request $request)
+    // {
+    //     $credentials = $request->validate([
+    //         'email' => 'required|email',
+    //         'password' => 'required',
+    //     ]);
+
+    //     if (Auth::attempt($credentials)) {
+
+    //         $request->session()->regenerate();
+
+    //         return redirect()->route('dashboard');
+    //     }
+
+    //     return back()->with('error', 'Invalid Credentials');
+    // }
+
+
     public function login(Request $request)
     {
-        $credentials = $request->validate([
+        $request->validate([
             'email' => 'required|email',
             'password' => 'required',
         ]);
 
-        if (Auth::attempt($credentials)) {
+        // Check email exists or not
+        $user = User::where('email', $request->email)->first();
 
-            $request->session()->regenerate();
-
-            return redirect()->route('dashboard');
+        if (!$user) {
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'email' => 'Email address does not exist.',
+                ]);
         }
 
-        return back()->with('error', 'Invalid Credentials');
+        // Check password
+        if (
+            !Auth::attempt([
+                'email' => $request->email,
+                'password' => $request->password
+            ])
+        ) {
+            return back()
+                ->withInput()
+                ->withErrors([
+                    'password' => 'Incorrect password.',
+                ]);
+        }
+
+        $request->session()->regenerate();
+
+        return redirect()->route('dashboard');
     }
 
     /*

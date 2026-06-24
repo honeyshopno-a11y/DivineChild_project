@@ -27,52 +27,7 @@ class HomeSliderController extends Controller
         return view('admin.HomeSlider.HomeSlider_store', $data);
     }
 
-    // Store
-    // public function store(Request $request)
-    // {
-    //     $id = $request->id;
-    //     $isEdit = !empty($id);
 
-    //     $request->validate([
-    //         'type' => 'required',
-    //         'file' => $isEdit
-    //             ? 'nullable|mimes:jpg,jpeg,png,mp4,mov,avi'
-    //             : 'required|mimes:jpg,jpeg,png,mp4,mov,avi',
-    //     ]);
-
-    //     if ($isEdit) {
-    //         $slider = HomeSlider::find($id);
-    //         $message = 'Updated Successfully';
-    //     } else {
-    //         $slider = new HomeSlider();
-    //         $message = 'Added Successfully';
-    //     }
-
-    //     $slider->type = $request->type;
-
-    //     if ($request->hasFile('file')) {
-
-    //         // delete old file
-    //         if ($isEdit && $slider->file && File::exists(public_path($slider->file))) {
-    //             File::delete(public_path($slider->file));
-    //         }
-
-    //         $file = $request->file('file');
-
-    //         $extension = $file->getClientOriginalExtension();
-
-    //         $filename = time() . '.' . $extension;
-
-    //         $file->move(public_path('uploads/home-slider'), $filename);
-
-    //         $slider->file = 'uploads/home-slider/' . $filename;
-    //     }
-
-    //     $slider->save();
-
-    //     return redirect()->route('slider-list')
-    //         ->with('success', $message);
-    // }
 
     public function homeSliderStore(Request $request)
     {
@@ -100,9 +55,14 @@ class HomeSliderController extends Controller
         // Validation
         $request->validate([
             'type' => 'required',
-            'file' => $id
-                ? 'nullable|mimes:jpg,jpeg,png,mp4,mov,avi'
-                : 'required|mimes:jpg,jpeg,png,mp4,mov,avi',
+            'file' => ($id == 'add')
+                ? 'required|mimes:jpg,jpeg,png,mp4,mov,avi|max:10240'
+                : 'nullable|mimes:jpg,jpeg,png,mp4,mov,avi|max:10240',
+        ], [
+            'type.required' => 'Please select type.',
+            'file.required' => 'Please upload a file.',
+            'file.mimes' => 'Only jpg, jpeg, png, mp4, mov and avi files are allowed.',
+            'file.max' => 'File size must not exceed 10 MB.',
         ]);
 
         // Save type

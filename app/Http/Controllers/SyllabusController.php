@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Syllabus;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class SyllabusController extends Controller
 {

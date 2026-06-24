@@ -34,7 +34,7 @@ class TimeTableController extends Controller
         $request->validate([
             'exam_name'      => 'required|string|max:255',
             'exam_from_date' => 'required|date',
-            'exam_to_date'   => 'nullable|date|after_or_equal:exam_from_date',
+            'exam_to_date'   => 'required|date|after_or_equal:exam_from_date',
             // 'ptm_date'   => 'nullable|date',
         ]);
 
@@ -95,7 +95,7 @@ class TimeTableController extends Controller
         $request->validate([
             'title'      => 'required|string|max:255',
             'from_date' => 'required|date',
-            'to_date'   => 'nullable|date|after_or_equal:from_date',
+            'to_date'   => 'required|date|after_or_equal:from_date',
         ]);
 
         if ($id == 'add') {
@@ -151,7 +151,7 @@ class TimeTableController extends Controller
         $request->validate([
             'title'     => 'required|string|max:255',
             'from_date' => 'required|date',
-            'to_date'   => 'nullable|date|after_or_equal:from_date',
+            'to_date'   => 'required|date|after_or_equal:from_date',
         ]);
 
         if ($id == 'add') {

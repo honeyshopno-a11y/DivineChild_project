@@ -29,6 +29,7 @@
                             <th class="text-center">SL</th>
                             <th class="text-center">Category Name</th>
                             <th class="text-center">Documents</th>
+                            <th class="text-center">Show</th>
                             <th class="text-center">Action</th>
                         </tr>
                     </thead>
@@ -39,41 +40,44 @@
 
                             @foreach($document_data as $key => $item)
 
-                            <tr>
+                                <tr>
 
-                                <td class="text-center">
-                                    {{ $key + 1 }}
-                                </td>
+                                    <td class="text-center">
+                                        {{ $key + 1 }}
+                                    </td>
 
-                                <td class="text-center">
-                                    {{ $item->title }}
-                                </td>
+                                    <td class="text-center">
+                                        {{ $item->title }}
+                                    </td>
 
-                                <td class="text-center">
-                                    {{ count($item->documents) }}
-                                </td>
+                                    <td class="text-center">
+                                        {{ count($item->documents) }}
+                                    </td>
 
-                                <td class="text-center">
+                                    <td class="text-center">
+                                        <button class="btn btn-primary" data-bs-toggle="modal"
+                                            data-bs-target="#documentModal{{ $item->id }}">
+                                            View
+                                        </button>
+                                    </td>
 
-                                    <button class="btn btn-info" data-bs-toggle="modal"
-                                        data-bs-target="#documentModal{{ $item->id }}">
-                                        View
-                                    </button>
+                                    <td class="text-center">
 
-                                    <a href="{{ route('document-add-edit', 'category-' . $item->id) }}"
-                                        class="btn btn-primary p-0">
-                                        <i class="bx bx-edit m-0 p-2" style="font-size:17px;"></i>
-                                    </a>
 
-                                    <a href="{{ route('document-delete', 'category-' . $item->id) }}"
-                                        class="btn btn-danger p-0"
-                                        onclick="confirmDelete(event, '{{ route('document-delete', 'category-' . $item->id) }}')">
-                                        <i class="bx bx-trash m-0 p-2" style="font-size:17px;"></i>
-                                    </a>
 
-                                </td>
+                                        <a href="{{ route('document-add-edit', 'category-' . $item->id) }}"
+                                            class="btn btn-primary p-0">
+                                            <i class="bx bx-edit m-0 p-2" style="font-size:17px;"></i>
+                                        </a>
 
-                            </tr>
+                                        <a href="{{ route('document-delete', 'category-' . $item->id) }}" class="btn btn-danger p-0"
+                                            onclick="confirmDelete(event, '{{ route('document-delete', 'category-' . $item->id) }}')">
+                                            <i class="bx bx-trash m-0 p-2" style="font-size:17px;"></i>
+                                        </a>
+
+                                    </td>
+
+                                </tr>
 
                             @endforeach
 
@@ -146,7 +150,7 @@
         </div>
 
     @endforeach
-<script>
+    <script>
         setTimeout(function () {
             const alert = document.getElementById('custom_alert');
             if (alert) {

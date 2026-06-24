@@ -81,19 +81,6 @@
 
                 <div class="row g-4">
 
-                    <!-- <div class="col-md-3 text-center">
-
-                                                                        @if($inquiry->child_photo)
-                                                                                <img src="{{ asset('uploads/inquiry/'.$inquiry->child_photo) }}"
-                                                                                    class="profile-image">
-                                                                            @else
-                                                                                <img src="https://via.placeholder.com/130"
-                                                                                    class="profile-image">
-                                                                            @endif
-
-                                                                        <h6 class="mt-2">Child Photo</h6>
-
-                                                                    </div> -->
 
                     @if($inquiry->child_photo)
 
@@ -114,63 +101,63 @@
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Academic Year</strong>
-                                    <p>{{ $inquiry->academic_year }}</p>
+                                    <p>{{ $inquiry->academic_year ?: 'N/A' }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Class</strong>
-                                    <p>{{ $inquiry->class }}</p>
+                                    <p>{{ $inquiry->class ?: 'N/A' }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Student Name</strong>
-                                    <p>{{ $inquiry->student_name }}</p>
+                                    <p>{{ $inquiry->student_name  ?: 'N/A' }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Email</strong>
-                                    <p>{{ $inquiry->primary_email_id }}</p>
+                                    <p>{{ $inquiry->primary_email_id  ?: 'N/A' }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Mobile No</strong>
-                                    <p>{{ $inquiry->primary_mobile_no }}</p>
+                                    <p>{{ $inquiry->primary_mobile_no  ?: 'N/A' }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Gender</strong>
-                                    <p>{{ $inquiry->select_gender }}</p>
+                                    <p>{{ $inquiry->select_gender  ?: 'N/A' }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Date Of Birth</strong>
-                                    <p>{{ $inquiry->date_of_birth }}</p>
+                                    <p>{{ $inquiry->date_of_birth  ?: 'N/A' }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Current Class</strong>
-                                    <p>{{ $inquiry->current_class }}</p>
+                                    <p>{{ $inquiry->current_class  ?: 'N/A' }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>School</strong>
-                                    <p>{{ $inquiry->name_of_the_present_school }}</p>
+                                    <p>{{ $inquiry->name_of_the_present_school ?: 'N/A'  }}</p>
                                 </div>
                             </div>
 
@@ -198,14 +185,14 @@
                     <div class="col-md-6">
                         <div class="detail-box">
                             <strong>Family Category</strong>
-                            <p>{{ $inquiry->family_category }}</p>
+                            <p>{{ $inquiry->family_category  ?: 'N/A' }}</p>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="detail-box">
                             <strong>Total Family Members</strong>
-                            <p>{{ $inquiry->total_family_members }}</p>
+                            <p>{{ $inquiry->total_family_members ?: 'N/A'  }}</p>
                         </div>
                     </div>
 
@@ -226,21 +213,7 @@
 
                 <div class="row g-4">
 
-                    <!-- <div class="col-md-3 text-center">
-
-                                                                    @if($inquiry->father_photo)
-
-                                                                        <img src="{{ asset('uploads/inquiry/' . $inquiry->father_photo) }}" class="profile-image">
-
-                                                                    @else
-
-                                                                        <img src="https://via.placeholder.com/130" class="profile-image">
-
-                                                                    @endif
-
-                                                                    <h6 class="mt-2">Father Photo</h6>
-
-                                                                </div> -->
+                   
 
                     @if($inquiry->father_photo)
 
@@ -261,21 +234,21 @@
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Father Name</strong>
-                                    <p>{{ $inquiry->father_name }}</p>
+                                    <p>{{ $inquiry->father_name  ?: 'N/A' }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Qualification</strong>
-                                    <p>{{ $inquiry->father_qualification }}</p>
+                                    <p>{{ $inquiry->father_qualification ?: 'N/A'  }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Occupation</strong>
-                                    <p>{{ $inquiry->father_occupation }}</p>
+                                    <p>{{ $inquiry->father_occupation ?: 'N/A'  }}</p>
                                 </div>
                             </div>
 
@@ -300,22 +273,7 @@
 
                 <div class="row g-4">
 
-                    <!-- <div class="col-md-3 text-center">
-
-                                    @if($inquiry->mother_photo)
-
-                                        <img src="{{ asset('uploads/inquiry/' . $inquiry->mother_photo) }}" class="profile-image">
-
-                                    @else
-
-                                        <img src="https://via.placeholder.com/130" class="profile-image">
-
-                                    @endif
-
-                                    <h6 class="mt-2">Mother Photo</h6>
-
-                                </div> -->
-
+                   
 
                     @if($inquiry->mother_photo)
 
@@ -327,7 +285,7 @@
 
                         </div>
 
-                    @endif  
+                    @endif
 
                     <div class="col-md-9">
 
@@ -336,21 +294,21 @@
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Mother Name</strong>
-                                    <p>{{ $inquiry->mother_name }}</p>
+                                    <p>{{ $inquiry->mother_name  ?: 'N/A' }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Qualification</strong>
-                                    <p>{{ $inquiry->mother_qualification }}</p>
+                                    <p>{{ $inquiry->mother_qualification ?: 'N/A'  }}</p>
                                 </div>
                             </div>
 
                             <div class="col-md-4">
                                 <div class="detail-box">
                                     <strong>Occupation</strong>
-                                    <p>{{ $inquiry->mother_occupation }}</p>
+                                    <p>{{ $inquiry->mother_occupation ?: 'N/A'  }}</p>
                                 </div>
                             </div>
 
@@ -378,14 +336,14 @@
                     <div class="col-md-6">
                         <div class="detail-box">
                             <strong>Current Address</strong>
-                            <p>{{ $inquiry->current_address }}</p>
+                            <p>{{ $inquiry->current_address ?: 'N/A'  }}</p>
                         </div>
                     </div>
 
                     <div class="col-md-6">
                         <div class="detail-box">
                             <strong>Medical History</strong>
-                            <p>{{ $inquiry->medical_history }}</p>
+                            <p>{{ $inquiry->medical_history ?: 'N/A'  }}</p>
                         </div>
                     </div>
 
@@ -396,7 +354,7 @@
         </div>
 
     </div>
-<script>
+    <script>
         setTimeout(function () {
             const alert = document.getElementById('custom_alert');
             if (alert) {

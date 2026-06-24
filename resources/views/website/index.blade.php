@@ -4,13 +4,13 @@
     <div class="main-wrapper">
         <!-- Preloader start -->
         <!--
-                                    <div id="preloader">
-                                        <div class="preloader preloader-02">
-                                            <span></span>
-                                            <span></span>
-                                        </div>
-                                    </div>
-                            -->
+                                                                                        <div id="preloader">
+                                                                                            <div class="preloader preloader-02">
+                                                                                                <span></span>
+                                                                                                <span></span>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                -->
         <!-- Preloader End -->
 
         <!-- Header Start  -->
@@ -19,8 +19,8 @@
                 <div class="container">
                     <div class="header-top-aff">
                         <div class="header-top-detail">
-                            <h5 class="top-head">Affiliation No. 430099 &nbsp; | &nbsp; School DISE Code: ------- &nbsp;
-                                | &nbsp; School Code: -----</h5>
+                            <h5 class="top-head">Affiliation No. 430099 &nbsp; | &nbsp; School DISE Code: 24221512909 &nbsp;
+                                | &nbsp; School Code: 10088</h5>
                         </div>
                     </div>
                 </div>
@@ -38,15 +38,30 @@
 
                         <div class="header-social">
                             <ul class="social">
-                                <li>
-                                    <a href="https://www.facebook.com/divinesurat/" target="_blank"><i
-                                            class="fab fa-facebook-f"></i></a>
-                                </li>
-                                <li>
-                                    <a href="https://www.instagram.com/divine_child_high_school_surat/" target="_blank"><i
-                                            class="fab fa-instagram"></i></a>
-                                </li>
-                                <li><a href="#"><i class="fab fa-linkedin"></i></a></li>
+                                @if(!empty($contact->facebook))
+                                    <li>
+                                        <a href="{{ $contact->facebook }}" target="_blank">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if(!empty($contact->instagram))
+                                    <li>
+                                        <a href="{{ $contact->instagram }}" target="_blank">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if(!empty($contact->linkedin))
+                                    <li>
+                                        <a href="{{ $contact->linkedin }}" target="_blank">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+                                    </li>
+                                @endif
+
                             </ul>
                         </div>
                     </div>
@@ -67,7 +82,7 @@
                                         <li><a href="{{ route('about-us') }}">About School</a></li>
                                         <li><a href="{{ route('principal-desk') }}">Principal's Desk</a></li>
                                         <li><a href="{{ route('mission-vision') }}">Mission / Vision</a></li>
-                                        <li><a href="{{ route('management') }}">Management</a></li>
+                                        <!-- <li><a href="{{ route('management') }}">Management</a></li> -->
                                         <li><a href="{{ route('staff') }}">Staff</a></li>
                                         <!-- <li><a href="#">Affiliation</a></li> -->
                                     </ul>
@@ -88,6 +103,7 @@
                                         <li><a href="{{ route('syllabus') }}">Syllabus</a></li>
                                         <li><a href="{{ route('ExamSchedule') }}">Examination Schedule</a></li>
                                         <li><a href="{{ route('holidayList') }}">Holiday List</a></li>
+                                        <li><a href="{{ route('annual-activities') }}">Annual Activities</a></li>
                                     </ul>
                                 </li>
 
@@ -140,7 +156,7 @@
                                 <li><a href="{{ route('about-us') }}">About School</a></li>
                                 <li><a href="{{ route('principal-desk') }}">Principal's Desk</a></li>
                                 <li><a href="{{ route('mission-vision') }}">Mission / Vision</a></li>
-                                <li><a href="{{ route('management') }}">Management</a></li>
+                                <!-- <li><a href="{{ route('management') }}">Management</a></li> -->
                                 <li><a href="{{ route('staff') }}">Staff</a></li>
                                 <!-- <li><a href="#">Affiliation</a></li> -->
                             </ul>
@@ -161,6 +177,7 @@
                                 <li><a href="{{ route('syllabus') }}">Syllabus</a></li>
                                 <li><a href="{{ route('ExamSchedule') }}">Examination Schedule</a></li>
                                 <li><a href="{{ route('holidayList') }}">Holiday List</a></li>
+                                <li><a href="{{ route('annual-activities') }}">Annual Activities</a></li>
                             </ul>
                         </li>
 
@@ -195,29 +212,29 @@
                 @endforeach
 
                 <!-- <div class="carousel-item">
-                                                <img src="assets/images/slider/slider06.jpg" class="d-block w-100"
-                                                    alt="Divine Child High School, DCHS">
-                                            </div>
+                                                                                                    <img src="assets/images/slider/slider06.jpg" class="d-block w-100"
+                                                                                                        alt="Divine Child High School, DCHS">
+                                                                                                </div>
 
-                                            <div class="carousel-item">
-                                                <img src="assets/images/slider/slider07.jpg" class="d-block w-100"
-                                                    alt="Divine Child High School, DCHS">
-                                            </div>
+                                                                                                <div class="carousel-item">
+                                                                                                    <img src="assets/images/slider/slider07.jpg" class="d-block w-100"
+                                                                                                        alt="Divine Child High School, DCHS">
+                                                                                                </div>
 
-                                            <div class="carousel-item">
-                                                <img src="assets/images/slider/slider04.jpg" class="d-block w-100"
-                                                    alt="Divine Child High School, DCHS">
-                                            </div>
+                                                                                                <div class="carousel-item">
+                                                                                                    <img src="assets/images/slider/slider04.jpg" class="d-block w-100"
+                                                                                                        alt="Divine Child High School, DCHS">
+                                                                                                </div>
 
-                                            <div class="carousel-item">
-                                                <img src="assets/images/slider/slider03.jpg" class="d-block w-100"
-                                                    alt="Divine Child High School, DCHS">
-                                            </div>
+                                                                                                <div class="carousel-item">
+                                                                                                    <img src="assets/images/slider/slider03.jpg" class="d-block w-100"
+                                                                                                        alt="Divine Child High School, DCHS">
+                                                                                                </div>
 
-                                            <div class="carousel-item">
-                                                <img src="assets/images/slider/slider02.jpg" class="d-block w-100"
-                                                    alt="Divine Child High School, DCHS">
-                                            </div> -->
+                                                                                                <div class="carousel-item">
+                                                                                                    <img src="assets/images/slider/slider02.jpg" class="d-block w-100"
+                                                                                                        alt="Divine Child High School, DCHS">
+                                                                                                </div> -->
             </div>
 
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
@@ -391,26 +408,7 @@
 
         <!-- Updates Start -->
         <div class="section upstudy-courses-section section-padding">
-            <div class="shape-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="894.5px" height="718.5px">
-                    <path
-                        d="M48.156,544.509 C64.534,603.904 12.951,766.86 238.584,698.280 C464.217,630.472 598.785,634.27 657.34,674.214 C757.251,743.356 940.642,708.949 878.541,444.905 C782.683,37.332 185.798,-131.815 64.798,119.817 C-56.201,371.449 31.778,485.114 48.156,544.509 Z" />
-                </svg>
-            </div>
-
-            <div class="shape-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="890px" height="714px">
-                    <path
-                        d="M843.343,170.989 C826.965,111.595 878.548,-50.587 652.915,17.219 C427.282,85.26 292.714,81.471 234.465,41.284 C134.248,-27.856 -49.142,6.549 12.958,270.593 C108.816,678.166 705.701,847.314 826.701,595.681 C947.701,344.48 859.721,230.384 843.343,170.989 Z" />
-                </svg>
-            </div>
-
-            <div class="shape-3">
-                <svg xmlns="http://www.w3.org/2000/svg" width="1000.5px" height="745.5px">
-                    <path
-                        d="M861.499,135.498 C825.499,85.498 817.499,-84.501 629.499,57.498 C441.499,199.498 297.499,273.498 245.499,225.498 C193.499,177.498 -184.500,227.498 117.499,517.499 C419.499,807.498 967.499,817.498 993.499,539.498 C1019.499,261.499 897.499,185.498 861.499,135.498 Z" />
-                </svg>
-            </div>
+            {{-- shapes same --}}
 
             <div class="container">
                 <div class="section-title text-center">
@@ -419,23 +417,19 @@
                 <div class="courses-wrap">
                     <div class="swiper-container courses-active">
                         <div class="swiper-wrapper">
-                            @foreach($news as $item)
+                            @foreach($news as $index => $item)
                                 <div class="swiper-slide">
                                     <div class="single-course">
-                                        <div class="courses-image">
-                                            <img src="{{ asset($item->image) }}" alt="">
+                                        <div class="courses-image news-thumb" data-index="{{ $index }}"
+                                            style="cursor: pointer; overflow: hidden; border-radius: 8px;">
+                                            <img src="{{ asset($item->image) }}" alt="" style="transition: transform 0.3s ease;"
+                                                onmouseover="this.style.transform='scale(1.05)'"
+                                                onmouseout="this.style.transform='scale(1)'">
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
-
-
-
-
-
                         </div>
-
-                        <!-- Add Pagination -->
                         <div class="swiper-pagination"></div>
                     </div>
                 </div>
@@ -628,125 +622,12 @@
 
         <!-- Map Starts -->
         <!--
-                                    <div>
-                                        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d930.1070449582529!2d72.81245257116394!3d21.1751429621072!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e0cd06399a3%3A0x3ea35e61ddf87e50!2sDivine%20Child%20High%20School!5e0!3m2!1sen!2sin!4v1691142633923!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                    </div>
-                            -->
+                                                                                        <div>
+                                                                                            <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d930.1070449582529!2d72.81245257116394!3d21.1751429621072!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e0cd06399a3%3A0x3ea35e61ddf87e50!2sDivine%20Child%20High%20School!5e0!3m2!1sen!2sin!4v1691142633923!5m2!1sen!2sin" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                                                                        </div>
+                                                                                -->
         <!-- Map End -->
         <!-- InstanceEndEditable -->
-
-        <!-- Footer Start -->
-        <!-- <div class="footer-section section">
-            <div class="container">
-                <div class="footer-widget-wrap">
-                    <div class="row">
-                        <div class="col-md-2">
-                            <div class="footer-widget">
-                                <h4 class="footer-widget-title">Navigation Link</h4>
-                                <div class="widget-info widget-link">
-                                    <ul class="link">
-                                        <li><a href="{{ route('about-us') }}">About School</a></li>
-                                        <li><a href="{{ route('principal-desk') }}">Principal's Desk</a></li>
-                                        <li><a href="{{ route('mission-vision') }}">Mission / Vision</a></li>
-                                        <li><a href="#">Management</a></li>
-                                        <li><a href="#">Staff</a></li>
-                                        <li><a href="#">Affiliation</a></li>
-                                        <li><a href="{{ route('public-disclosure') }}">Public Disclosure</a></li>
-                                        <li><a href="{{route('prospectus')}}">Prospectus</a></li>
-                                        <li><a href="{{ route('contact-us') }}">Contact Us</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-2">
-                            <div class="footer-widget">
-                                <h4 class="footer-widget-title">Useful Link</h4>
-                                <div class="widget-info widget-link">
-                                    <ul class="link">
-                                        <li><a href="#">Required Documents</a></li>
-                                        <li><a href="#">Fee Structure</a></li>
-                                        <li><a href="transfer-certificates.html">Transfer Certificate</a></li>
-                                        <li><a href="timetable.html">Timetable</a></li>
-                                        <li><a href="syllabus.html">Syllabus</a></li>
-                                        <li><a href="#">Examination Schedule</a></li>
-                                        <li><a href="#">Holiday List</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="footer-widget">
-                                <h4 class="footer-widget-title">Contact Info.</h4>
-                                <div class="widget-info widget-info-3">
-                                    <ul>
-                                        <div class="info-text pb-4">
-                                            <p class="call-text pb-1">Main Building</p>
-                                            <p>{{ $contact->main_building ?? '-' }}</p>
-                                        </div>
-
-                                        <div class="info-text pb-4">
-                                            <p class="call-text pb-1">Old Building</p>
-                                            <p>{{ $contact->old_building ?? '-' }}</p>
-                                        </div>
-
-                                        <div class="info-text pb-4">
-                                            <p class="call-text pb-1">Call Us Free</p>
-                                            <p>{{ $contact->number ?? '-' }}</p>
-                                        </div>
-
-                                        <div class="info-text pb-4">
-                                            <p class="call-text pb-1">Email Id</p>
-                                            <p>{{ $contact->email ?? '-' }}</p>
-                                        </div>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="footer-widget">
-                                <h4 class="footer-widget-title">Locate Us</h4>
-                                <div class="widget-info widget-link">
-                                    <iframe
-                                        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d930.1070449582529!2d72.81245257116394!3d21.1751429621072!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be04e0cd06399a3%3A0x3ea35e61ddf87e50!2sDivine%20Child%20High%20School!5e0!3m2!1sen!2sin!4v1691142633923!5m2!1sen!2sin"
-                                        width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy"
-                                        referrerpolicy="no-referrer-when-downgrade"></iframe>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-               
-
-                <div class="footer-copyright">
-                    <div class="copyright-wrapper">
-                        <div class="row align-items-center">
-                            <div class="col-lg-6 col-md-6">
-                                <div class="copyright-text">
-                                    <p>© 2026 Divine Child High School. All rights reserved. Design &amp; Developed By:
-                                        <a href="http://www.desirationhub.com" target="_blank">Desiration Hub</a>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="col-lg-6 col-md-6">
-                                <div class="copyright-social">
-                                    <ul class="social">
-                                        <li><a href="https://www.facebook.com/divinesurat/" target="_blank"><i
-                                                    class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="https://www.instagram.com/divine_child_high_school_surat/"
-                                                target="_blank"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div> -->
-        <!-- Footer End -->
 
         <!-- back to top start -->
         <div class="progress-wrap">
@@ -754,8 +635,107 @@
                 <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" />
             </svg>
         </div>
-        <!-- back to top end -->
+        <!-- back to top end -->.
+
+
+
+        <!-- ===== NEWS LIGHTBOX ===== -->
+        <div id="newsLightbox"
+            style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.88); z-index:9999; align-items:center; justify-content:center;">
+
+            <button onclick="closeNewsLightbox()" title="Close"
+                style="position:fixed; top:20px; right:24px; background:rgba(255,255,255,0.15); border:none; color:#fff; width:42px; height:42px; border-radius:50%; font-size:22px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10000;"
+                onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+                onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+                &times;
+            </button>
+
+            <button onclick="changeNews(-1)" title="Previous"
+                style="position:fixed; left:20px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); border:none; color:#fff; width:48px; height:48px; border-radius:50%; font-size:26px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10000;"
+                onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+                onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+                &#8249;
+            </button>
+
+            <div style="text-align:center; max-width:90vw; max-height:90vh;">
+                <img id="lb-news-image" src="" alt=""
+                    style="max-width:90vw; max-height:80vh; object-fit:contain; border-radius:8px; box-shadow:0 8px 40px rgba(0,0,0,0.5);">
+                <p id="lb-news-counter" style="color:rgba(255,255,255,0.4); font-size:12px; margin-top:10px;"></p>
+            </div>
+
+            <button onclick="changeNews(1)" title="Next"
+                style="position:fixed; right:20px; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.15); border:none; color:#fff; width:48px; height:48px; border-radius:50%; font-size:26px; cursor:pointer; display:flex; align-items:center; justify-content:center; z-index:10000;"
+                onmouseover="this.style.background='rgba(255,255,255,0.3)'"
+                onmouseout="this.style.background='rgba(255,255,255,0.15)'">
+                &#8250;
+            </button>
+        </div>
+        <!-- ===== END NEWS LIGHTBOX ===== -->
+
+
     </div>
+
+
+
+
+
+    @php
+        $newsJson = [];
+        foreach ($news as $item) {
+            $newsJson[] = [
+                'src' => asset($item->image),
+            ];
+        }
+        $newsJsonEncoded = json_encode(array_values($newsJson));
+    @endphp
+
+    <script>
+        const newsImages = {!! $newsJsonEncoded !!};
+
+        let currentNews = 0;
+
+        document.querySelectorAll('.news-thumb').forEach(function (el) {
+            el.addEventListener('click', function () {
+                currentNews = parseInt(this.getAttribute('data-index'));
+                openNewsLightbox();
+            });
+        });
+
+        function openNewsLightbox() {
+            updateNewsImage();
+            document.getElementById('newsLightbox').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeNewsLightbox() {
+            document.getElementById('newsLightbox').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+
+        function changeNews(direction) {
+            currentNews = (currentNews + direction + newsImages.length) % newsImages.length;
+            updateNewsImage();
+        }
+
+        function updateNewsImage() {
+            const item = newsImages[currentNews];
+            document.getElementById('lb-news-image').src = item.src;
+            document.getElementById('lb-news-counter').textContent = (currentNews + 1) + ' / ' + newsImages.length;
+        }
+
+        document.getElementById('newsLightbox').addEventListener('click', function (e) {
+            if (e.target === this) closeNewsLightbox();
+        });
+
+        document.addEventListener('keydown', function (e) {
+            const lb = document.getElementById('newsLightbox');
+            if (lb.style.display === 'flex') {
+                if (e.key === 'ArrowRight') changeNews(1);
+                if (e.key === 'ArrowLeft') changeNews(-1);
+                if (e.key === 'Escape') closeNewsLightbox();
+            }
+        });
+    </script>
 
 
 

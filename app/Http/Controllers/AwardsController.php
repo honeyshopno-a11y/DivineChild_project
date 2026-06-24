@@ -35,7 +35,7 @@ class AwardsController extends Controller
         $request->validate([
             'title' => 'required',
             'date' => 'required|date',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         // ADD

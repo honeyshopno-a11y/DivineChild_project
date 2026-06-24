@@ -26,6 +26,7 @@ use App\Models\Syllabus;
 use App\Models\DocContact;
 use App\Models\Management;
 use App\Models\SchoolActivities;
+use App\Models\TransferCertificate;
 use Illuminate\Http\Request;
 
 class WebController extends Controller
@@ -42,6 +43,7 @@ class WebController extends Controller
 
         return view('website.index', compact('sliders', 'news', 'contact'));
     }
+    
 
     public function aboutUs()
     {
@@ -139,7 +141,7 @@ class WebController extends Controller
         $fee_structure_details_note = FeeStructureDetailNote::first();
         $activities = SchoolActivities::all();
         $timing = SchoolTiming::all();
-        return view("website.feesStructure", compact('activities', 'timing' , 'categories' , 'fee_structure_details_note' ,'feeDetails' ,'totals'));
+        return view("website.feesStructure", compact('activities', 'timing', 'categories', 'fee_structure_details_note', 'feeDetails', 'totals'));
     }
 
     public function syllabus()
@@ -177,7 +179,7 @@ class WebController extends Controller
     public function facilities()
     {
         $facilities = Facilities::first();
-        return view("website.facilities",compact('facilities'));
+        return view("website.facilities", compact('facilities'));
     }
 
     public function documents()
@@ -196,6 +198,20 @@ class WebController extends Controller
 
     public function transferCertificates()
     {
-        return view("website.transfer-certificates");
+        $transfer_certificate = TransferCertificate::latest()->get();
+
+        return view("website.transfer-certificates", compact("transfer_certificate"));
+    }
+
+
+
+    public function aim_of_school()
+    {
+        return view("website.aim-of-school");
+    }
+
+    public function annual_activities()
+    {
+        return view("website.annual_activities");
     }
 }

@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email');
             $table->string('main_building');
             $table->string('old_building');
+            $table->string('facebook');
+            $table->string('instagram');
+            $table->string('linkedin');
             $table->timestamps();
         });
     }

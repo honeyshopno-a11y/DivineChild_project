@@ -64,7 +64,7 @@
             <div class="doc-contact-row">
                 <div class="doc-contact-card">
                     <div class="doc-contact-icon">
-                        <i class="fas fa-phone"></i>
+                        <i class="fas fa-bus"></i>
                     </div>
                     <div>
                         <div class="doc-contact-label">Transport</div>

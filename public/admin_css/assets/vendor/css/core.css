@@ -2682,6 +2682,8 @@ textarea.form-control-lg {
   flex-wrap: wrap;
   align-items: stretch;
   width: 100%;
+  border: 1px solid #225178;
+    border-radius: 10px;
 }
 .input-group > .form-control,
 .input-group > .form-select {
@@ -5803,8 +5805,8 @@ select:-webkit-autofill,
 select:-webkit-autofill:hover,
 select:-webkit-autofill:focus,
 input:-internal-autofill-selected {
-  background-clip: text !important;
-  -webkit-background-clip: text !important;
+  background-clip: text;
+  -webkit-background-clip: text ;
 }
 
 .row-bordered {
@@ -9722,7 +9724,7 @@ button.list-group-item-gray.active {
 }
 
 .p-3 {
-  padding: 1rem !important;
+  padding: 0rem !important;
 }
 
 .p-4 {
@@ -15088,6 +15090,7 @@ html:not(.layout-menu-fixed) .menu-inner-shadow {
 .menu-vertical .menu-inner {
   flex-direction: column;
   flex: 1 1 auto;
+  margin-bottom: 30px;
 }
 .menu-vertical .menu-inner > .menu-item {
   margin: 0.0625rem 0;

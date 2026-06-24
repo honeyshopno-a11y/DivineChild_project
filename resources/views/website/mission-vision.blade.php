@@ -12,7 +12,7 @@
                         <div class="page-banner text-center">
                             <h2 class="title">Mission/Vision</h2>
                             <ul class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+                                <li class="breadcrumb-item"><a href="{{ url('/') }}">Home</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Mission/Vision</li>
                             </ul>
                         </div>

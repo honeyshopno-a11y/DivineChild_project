@@ -61,6 +61,39 @@
                         @enderror
                     </div>
 
+                    <div class="col-12 col-md-4 mb-3">
+                        <label class="form-label">Facebook Link</label>
+                        <input type="text" name="facebook" class="form-control @error('facebook') is-invalid @enderror"
+                            placeholder="Enter Facebook URL"
+                            value="{{ old('facebook', optional($contact_data)->facebook) }}">
+
+                        @error('facebook')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-12 col-md-4 mb-3">
+                        <label class="form-label">Instagram Link</label>
+                        <input type="text" name="instagram" class="form-control @error('instagram') is-invalid @enderror"
+                            placeholder="Enter Instagram URL"
+                            value="{{ old('instagram', optional($contact_data)->instagram) }}">
+
+                        @error('instagram')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
+                    <div class="col-12 col-md-4 mb-3">
+                        <label class="form-label">LinkedIn Link</label>
+                        <input type="text" name="linkedin" class="form-control @error('linkedin') is-invalid @enderror"
+                            placeholder="Enter LinkedIn URL"
+                            value="{{ old('linkedin', optional($contact_data)->linkedin) }}">
+
+                        @error('linkedin')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
+                    </div>
+
                 </div>
             </div>
 

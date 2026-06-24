@@ -44,8 +44,9 @@
                                                 <img src="{{ asset('image/plus.png') }}" id="image_select"
                                                     class="rounded store_img_view" onclick="triggerFileInput('image')" />
                                             @endif
-                                            <input type="file" class="form-control d-none" id="image" name="image"
-                                                accept="pdf/*">
+                                            <input type="file"
+                                                class="form-control d-none @error('image') is-invalid @enderror" id="image"
+                                                name="image" accept="image/*">
                                         </div>
                                         @error('image')
                                             <span class="text-danger">{{ $message }}</span>
@@ -87,7 +88,7 @@
             previewImage('image', 'image_select');
         });
     </script>
-<script>
+    <script>
         setTimeout(function () {
             const alert = document.getElementById('custom_alert');
             if (alert) {

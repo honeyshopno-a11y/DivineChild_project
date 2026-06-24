@@ -35,7 +35,7 @@ class ManagementController extends Controller
         $request->validate([
             'name' => 'required',
             'post' => 'required',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
         ]);
 
         // ADD

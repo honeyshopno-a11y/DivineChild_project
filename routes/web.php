@@ -6,6 +6,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AwardsController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ContactController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DocContactController;
 use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\EventsController;
@@ -22,6 +23,7 @@ use App\Http\Controllers\SchoolActivitiesController;
 use App\Http\Controllers\StaffController;
 use App\Http\Controllers\SyllabusController;
 use App\Http\Controllers\TimeTableController;
+use App\Http\Controllers\TransferCertificateController;
 use App\Http\Controllers\WebController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,9 +32,6 @@ use Illuminate\Support\Facades\Route;
 //     return view('website.index');
 // });
 
-Route::get('/facilities', function () {
-    return view('facility');
-});
 
 Route::get('/', [WebController::class, 'index'])->name('home');
 Route::get('/about-us', [WebController::class, 'aboutUs'])->name('about-us');
@@ -57,7 +56,9 @@ Route::get('awards', [WebController::class, 'awards'])->name('awards');
 Route::get('facilities', [WebController::class, 'facilities'])->name('facilities');
 Route::get('management', [WebController::class, 'management'])->name('management');
 Route::get('/staff', [WebController::class, 'staff'])->name('staff');
+Route::get('/aim-of-school', [WebController::class, 'aim_of_school'])->name('aim-of-school');
 Route::get('/school-timing', [WebController::class, 'school-timing'])->name('school-timing');
+Route::get('/annual-activities', [WebController::class, 'annual_activities'])->name('annual-activities');
 
 
 
@@ -87,6 +88,8 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/logout', [AuthController::class, 'logout'])
         ->name('logout');
+
+    Route::get('/dashboard', [DashboardController::class, 'dashboard'])->name('dashboard');
 
     Route::get('/slider-list', [HomeSliderController::class, 'index'])->name('slider-list');
     Route::get('/slider-form/{id?}', [HomeSliderController::class, 'addEdit'])->name('slider-add-edit');
@@ -195,9 +198,10 @@ Route::middleware('auth')->group(function () {
 
 
     Route::get('/school-activity-list', [SchoolActivitiesController::class, 'SchoolActivityList'])->name('school-activity-list');
-    Route::get('/school-activity/{slug}', [SchoolActivitiesController::class, 'SchoolActivityAddEdit']);
+    Route::get('/school-activity/{slug}', [SchoolActivitiesController::class, 'SchoolActivityAddEdit'])->name('school-activity-add-edit');
     Route::post('/school-activity-store', [SchoolActivitiesController::class, 'SchoolActivityStore'])->name('school-activity-store');
     Route::get('/school-activity-delete/{id}', [SchoolActivitiesController::class, 'SchoolActivityDelete']);
+
 
     Route::get('/staff-list', [StaffController::class, 'staffList'])->name('staff-list');
     Route::get('/staff/{id}', [StaffController::class, 'staffAddEdit'])->name('staff-add-edit');
@@ -218,4 +222,11 @@ Route::middleware('auth')->group(function () {
     Route::post('/fees-structure-details-store', [FeesController::class, 'feesStructureDetailsStore'])->name('fees-structure-details-store');
     Route::get('/fees-structure-details-delete/{id}', [FeesController::class, 'feesStructureDetailsDelete'])->name('fees-structure-details-delete');
     Route::post('/fees-structure-note-store', [FeesController::class, 'feesStructureNoteStore'])->name('fees-structure-note-store');
+
+    Route::get('/transfer-certificate-list', [TransferCertificateController::class, 'transferCertificateList'])->name('transfer-certificate-list');
+    Route::get('/transfer-certificate-add', [TransferCertificateController::class, 'transferCertificateAdd'])->name('transfer-certificate-add');
+    Route::post('/transfer-certificate-store', [TransferCertificateController::class, 'transferCertificateStore'])->name('transfer-certificate-store');
+    Route::get('/transfer-certificate-delete/{id}', [TransferCertificateController::class, 'transferCertificateDelete'])->name('transfer-certificate-delete');
+
+
 });

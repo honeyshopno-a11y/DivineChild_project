@@ -32,9 +32,15 @@ class NewsController extends Controller
     {
         $id = $request->id;
 
-        $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-        ]);
+        $rules = [];
+
+        if ($id == 'add') {
+            $rules['image'] = 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
+        } else {
+            $rules['image'] = 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048';
+        }
+
+        $request->validate($rules);
 
         // ADD
         if ($id == 'add') {

@@ -2,7 +2,8 @@
 @section('title', 'Inquiry Form List')
 @section('content')
 
-    {{-- <meta charset="utf-8" />
+    {{--
+    <meta charset="utf-8" />
     <meta name="viewport"
         content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0" />
     <title>Inquiry Form List</title> --}}
@@ -42,19 +43,21 @@
                                             <td class="text-center">{{ $key + 1 }}</td>
 
                                             <td class="text-center">
-                                                <h6 class="text-nowrap mb-0">{{ $item->student_name }}</h6>
+                                                <h6 class="text-nowrap mb-0">
+                                                    {{ $item->student_name ?? 'N/A' }}
+                                                </h6>
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $item->primary_email_id }}
+                                                {{ $item->primary_email_id ?? 'N/A' }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $item->primary_mobile_no }}
+                                                {{ $item->primary_mobile_no ?? 'N/A' }}
                                             </td>
 
                                             <td class="text-center">
-                                                {{ $item->class }}
+                                                {{ $item->class ?? 'N/A' }}
                                             </td>
 
                                             <td class="text-center">
@@ -63,8 +66,7 @@
                                                     <i class="bx bx-show m-0 p-2" style="font-size: 17px;"></i>
                                                 </a>
 
-                                                <a href="{{ route('inquiry-form-delete', $item->id) }}"
-                                                    class="btn btn-danger p-0"
+                                                <a href="{{ route('inquiry-form-delete', $item->id) }}" class="btn btn-danger p-0"
                                                     onclick="confirmDelete(event, '{{ route('inquiry-form-delete', $item->id) }}')">
                                                     <i class="bx bx-trash m-0 p-2" style="font-size: 17px;"></i>
                                                 </a>
@@ -91,7 +93,7 @@
         @endsession
 
     </div>
-<script>
+    <script>
         setTimeout(function () {
             const alert = document.getElementById('custom_alert');
             if (alert) {

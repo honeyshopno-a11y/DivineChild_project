@@ -147,8 +147,8 @@
                                         <span class="required-star">*</span>
                                     </label>
 
-                                    <input type="file" name="file" class="form-control" id="fileInput"
-                                        accept="image/*,video/*">
+                                    <input type="file" name="file" class="form-control @error('file') is-invalid @enderror"
+                                        id="fileInput" accept="image/*,video/*">
 
                                     @error('file')
                                         <span class="text-danger">
@@ -249,9 +249,9 @@
             if (fileType.startsWith('image/')) {
 
                 previewContainer.innerHTML = `
-                    <img src="${fileURL}"
-                         class="store_img_view">
-                `;
+                            <img src="${fileURL}"
+                                 class="store_img_view">
+                        `;
 
             }
 
@@ -259,17 +259,17 @@
             else if (fileType.startsWith('video/')) {
 
                 previewContainer.innerHTML = `
-                    <video controls class="video_preview">
-                        <source src="${fileURL}">
-                    </video>
-                `;
+                            <video controls class="video_preview">
+                                <source src="${fileURL}">
+                            </video>
+                        `;
 
             }
 
         });
 
     </script>
-<script>
+    <script>
         setTimeout(function () {
             const alert = document.getElementById('custom_alert');
             if (alert) {

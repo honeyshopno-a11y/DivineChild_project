@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AgeCriteria extends Model
 {
-    protected $table = "ageCriteria";
+    protected $table = "agecriteria";
     protected $fillable = [
         'year',
         'standard',

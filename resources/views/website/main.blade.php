@@ -20,7 +20,7 @@
     <link rel="stylesheet" href="{{ asset('website/assets/css/plugins/nice-select.css') }}">
     <link rel="stylesheet" href="{{ asset('website/assets/css/plugins/jquery.powertip.min.css') }}">
     <link rel="stylesheet" href="{{ asset('website/assets/css/plugins/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('website/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('website/assets/css/style.css?v=2') }}">
 </head>
 
 <body>
@@ -42,14 +42,15 @@
                 <div class="container">
                     <div class="header-top-aff">
                         <div class="header-top-detail">
-                            <h5 class="top-head">Affiliation No. 430099 &nbsp; | &nbsp; School DISE Code: ------- &nbsp;
-                                | &nbsp; School Code: -----</h5>
+                            <h5 class="top-head">Affiliation No. 430099 &nbsp; | &nbsp; School DISE Code: 24221512909
+                                &nbsp;
+                                | &nbsp; School Code: 10088</h5>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="header-top-section d-none d-lg-flex">
+            <!-- <div class="header-top-section d-none d-lg-flex">
                 <div class="container">
                     <div class="header-top-wrap">
                         <div class="header-top-info">
@@ -74,7 +75,61 @@
                         </div>
                     </div>
                 </div>
+            </div> -->
+
+
+            <div class="header-top-section d-none d-lg-flex">
+                <div class="container">
+                    <div class="header-top-wrap">
+
+                        <div class="header-top-info">
+                            <ul>
+                                <li>
+                                    <i class="flaticon-phone-call"></i>
+                                    Call {{ $contact->number ?? '' }}
+                                </li>
+
+                                <li>
+                                    <i class="fas fa-envelope"></i>
+                                    {{ $contact->email ?? '' }}
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="header-social">
+                            <ul class="social">
+
+                                @if(!empty($contact->facebook))
+                                    <li>
+                                        <a href="{{ $contact->facebook }}" target="_blank">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if(!empty($contact->instagram))
+                                    <li>
+                                        <a href="{{ $contact->instagram }}" target="_blank">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                    </li>
+                                @endif
+
+                                @if(!empty($contact->linkedin))
+                                    <li>
+                                        <a href="{{ $contact->linkedin }}" target="_blank">
+                                            <i class="fab fa-linkedin"></i>
+                                        </a>
+                                    </li>
+                                @endif
+
+                            </ul>
+                        </div>
+
+                    </div>
+                </div>
             </div>
+
 
             <div class="header-bottom-section">
                 <div class="container-fluid custom-container">
@@ -90,7 +145,7 @@
                                         <li><a href="{{ route('about-us') }}">About School</a></li>
                                         <li><a href="{{route('principal-desk')}}">Principal's Desk</a></li>
                                         <li><a href="{{ route('mission-vision') }}">Mission / Vision</a></li>
-                                        <li><a href="{{ route('management') }}">Management</a></li>
+                                        <!-- <li><a href="{{ route('management') }}">Management</a></li> -->
                                         <li><a href="{{ route('staff') }}">Staff</a></li>
                                         <!-- <li><a href="#">Affiliation</a></li> -->
                                     </ul>
@@ -111,6 +166,7 @@
                                         <li><a href="{{ route('syllabus') }}">Syllabus</a></li>
                                         <li><a href="{{ route('ExamSchedule') }}">Examination Schedule</a></li>
                                         <li><a href="{{ route('holidayList') }}">Holiday List</a></li>
+                                        <li><a href="{{ route('annual-activities') }}">Annual Activities</a></li>
                                     </ul>
                                 </li>
 
@@ -232,7 +288,7 @@
                                         <li><a href="{{ route('about-us') }}">About School</a></li>
                                         <li><a href="{{ route('principal-desk') }}">Principal's Desk</a></li>
                                         <li><a href="{{ route('mission-vision') }}">Mission / Vision</a></li>
-                                        <li><a href="{{ route('management') }}">Management</a></li>
+                                        <!-- <li><a href="{{ route('management') }}">Management</a></li> -->
                                         <li><a href="{{ route('staff') }}">Staff</a></li>
                                         <!-- <li><a href="#">Affiliation</a></li>  -->
                                         <li><a href="{{ route('public-disclosure') }}">Public Disclosure</a></li>
@@ -255,6 +311,9 @@
                                         <li><a href="{{ route('syllabus') }}">Syllabus</a></li>
                                         <li><a href="{{ route('ExamSchedule') }}">Examination Schedule</a></li>
                                         <li><a href="{{ route('holidayList') }}">Holiday List</a></li>
+                                        <li><a href="{{ route('annual-activities') }}">Annual Activities</a></li>
+                                        <li><a href="{{ route('facilities') }}">Facilities</a></li>
+                                        <li><a href="{{ route('aim-of-school') }}">Aim of School</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -310,7 +369,8 @@
                         <div class="row align-items-center">
                             <div class="col-lg-6 col-md-6">
                                 <div class="copyright-text">
-                                    <p>© 2026 Divine Child High School. All rights reserved. Design &amp; Developed By:
+                                    <p>© {{ date('Y') }} Divine Child High School. All rights reserved. Design &amp;
+                                        Developed By:
                                         <a href="http://www.desirationhub.com" target="_blank">Desiration Hub</a>
                                     </p>
                                 </div>
@@ -318,12 +378,33 @@
                             <div class="col-lg-6 col-md-6">
                                 <div class="copyright-social">
                                     <ul class="social">
-                                        <li><a href="https://www.facebook.com/divinesurat/" target="_blank"><i
-                                                    class="fab fa-facebook-f"></i></a></li>
-                                        <li><a href="https://www.instagram.com/divine_child_high_school_surat/"
-                                                target="_blank"><i class="fab fa-instagram"></i></a></li>
-                                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                                        @if(!empty($contact->facebook))
+                                            <li>
+                                                <a href="{{ $contact->facebook }}" target="_blank">
+                                                    <i class="fab fa-facebook-f"></i>
+                                                </a>
+                                            </li>
+                                        @endif
+
+                                        @if(!empty($contact->instagram))
+                                            <li>
+                                                <a href="{{ $contact->instagram }}" target="_blank">
+                                                    <i class="fab fa-instagram"></i>
+                                                </a>
+                                            </li>
+                                        @endif
+
+                                        @if(!empty($contact->linkedin))
+                                            <li>
+                                                <a href="{{ $contact->linkedin }}" target="_blank">
+                                                    <i class="fab fa-linkedin"></i>
+                                                </a>
+                                            </li>
+                                        @endif
+
+
                                     </ul>
+
                                 </div>
                             </div>
                         </div>

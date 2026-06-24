@@ -30,10 +30,17 @@ class GalleryController extends Controller
 
     public function galleryStore(Request $request)
     {
+        // return $request;  
+
         $id = $request->id;
 
         $request->validate([
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ], [
+            'image.required' => 'Please select an image.',
+            'image.image' => 'Only image files are allowed.',
+            'image.mimes' => 'Image must be jpg, jpeg, png or webp format.',
+            'image.max' => 'Image size must not exceed 2MB.',
         ]);
 
         // ADD

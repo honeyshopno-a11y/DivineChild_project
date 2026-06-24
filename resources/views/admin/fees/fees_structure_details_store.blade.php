@@ -52,7 +52,7 @@
                                     name="title"
                                     class="form-control"
                                     value=""
-                                    placeholder="Enter Title">{{ $fee_structure_details->title ?? '' }}</textarea>
+                                    placeholder="Enter Title" required>{{ $fee_structure_details->title ?? '' }}</textarea>
                             </div>
 
                         </div>
@@ -74,7 +74,7 @@
                                         class="form-control"
                                         name="category_name[{{ $category->title }}]"
                                         value="{{ $details[$category->title] ?? '' }}"
-                                        placeholder="Enter Amount">
+                                        placeholder="Enter Amount" required>
 
                                 </div>
 
